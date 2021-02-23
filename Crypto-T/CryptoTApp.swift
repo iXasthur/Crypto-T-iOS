@@ -9,9 +9,13 @@ import SwiftUI
 
 @main
 struct CryptoTApp: App {
+    
+    @StateObject var dashboard = Dashboard()
+    
     var body: some Scene {
         WindowGroup {
             ContentView()
+                .environmentObject(dashboard)
         }
     }
 }

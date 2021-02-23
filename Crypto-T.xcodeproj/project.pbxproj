@@ -8,22 +8,62 @@
 
 /* Begin PBXBuildFile section */
 		CABA5109E1C197CBDA7BC860 /* Pods_Crypto_T.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 88279398B42EB9E253645E3E /* Pods_Crypto_T.framework */; };
+		D03068CD25E54B8F001E2707 /* MainTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D03068CC25E54B8F001E2707 /* MainTabView.swift */; };
+		D03068D325E554AD001E2707 /* Dashboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = D03068D225E554AD001E2707 /* Dashboard.swift */; };
+		D03068D625E55D8A001E2707 /* CryptoAsset.swift in Sources */ = {isa = PBXBuildFile; fileRef = D03068D525E55D8A001E2707 /* CryptoAsset.swift */; };
+		D044BD8825E57AE300E5554C /* NetworkCreator.swift in Sources */ = {isa = PBXBuildFile; fileRef = D044BD8725E57AE300E5554C /* NetworkCreator.swift */; };
+		D044BD8B25E57AF300E5554C /* TokenCreator.swift in Sources */ = {isa = PBXBuildFile; fileRef = D044BD8A25E57AF300E5554C /* TokenCreator.swift */; };
 		D0792C5325E5234A00E5102C /* CryptoTApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0792C5225E5234A00E5102C /* CryptoTApp.swift */; };
 		D0792C5525E5234A00E5102C /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0792C5425E5234A00E5102C /* ContentView.swift */; };
 		D0792C5725E5234B00E5102C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D0792C5625E5234B00E5102C /* Assets.xcassets */; };
 		D0792C5A25E5234B00E5102C /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D0792C5925E5234B00E5102C /* Preview Assets.xcassets */; };
+		D0A05A1525E5740B003FCB66 /* CryptoNetwork.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0A05A1425E5740B003FCB66 /* CryptoNetwork.swift */; };
+		D0A05A1925E5756F003FCB66 /* AuthData.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0A05A1825E5756F003FCB66 /* AuthData.swift */; };
+		D0A05A1F25E57705003FCB66 /* SignInView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0A05A1E25E57705003FCB66 /* SignInView.swift */; };
+		D0A05A2325E57712003FCB66 /* SignUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0A05A2225E57712003FCB66 /* SignUpView.swift */; };
+		D0A05A2625E57732003FCB66 /* AuthView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0A05A2525E57732003FCB66 /* AuthView.swift */; };
+		D0A05A2B25E57771003FCB66 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0A05A2A25E57771003FCB66 /* HomeView.swift */; };
+		D0ED7ABD25E577F00018C086 /* NetworksListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0ED7ABC25E577F00018C086 /* NetworksListView.swift */; };
+		D0ED7AC025E577FE0018C086 /* MapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0ED7ABF25E577FE0018C086 /* MapView.swift */; };
+		D0ED7AC325E578110018C086 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0ED7AC225E578110018C086 /* SettingsView.swift */; };
+		D0ED7AC625E578850018C086 /* NetworkDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0ED7AC525E578850018C086 /* NetworkDetailsView.swift */; };
+		D0ED7ACA25E5789F0018C086 /* NetworkCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0ED7AC925E5789F0018C086 /* NetworkCellView.swift */; };
+		D0ED7ACE25E578AD0018C086 /* TokensListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0ED7ACD25E578AD0018C086 /* TokensListView.swift */; };
+		D0ED7AD125E578B50018C086 /* TokenCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0ED7AD025E578B50018C086 /* TokenCellView.swift */; };
+		D0ED7AD525E578C50018C086 /* TokenDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0ED7AD425E578C50018C086 /* TokenDetailsView.swift */; };
+		D0ED7AD925E57A340018C086 /* SettingsData.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0ED7AD825E57A340018C086 /* SettingsData.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		35BC58E3D493C238B5D539C0 /* Pods-Crypto-T.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Crypto-T.release.xcconfig"; path = "Target Support Files/Pods-Crypto-T/Pods-Crypto-T.release.xcconfig"; sourceTree = "<group>"; };
 		4E1D6874315813DC65A94ACC /* Pods-Crypto-T.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Crypto-T.debug.xcconfig"; path = "Target Support Files/Pods-Crypto-T/Pods-Crypto-T.debug.xcconfig"; sourceTree = "<group>"; };
 		88279398B42EB9E253645E3E /* Pods_Crypto_T.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Crypto_T.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		D03068CC25E54B8F001E2707 /* MainTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabView.swift; sourceTree = "<group>"; };
+		D03068D225E554AD001E2707 /* Dashboard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Dashboard.swift; sourceTree = "<group>"; };
+		D03068D525E55D8A001E2707 /* CryptoAsset.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CryptoAsset.swift; sourceTree = "<group>"; };
+		D044BD8725E57AE300E5554C /* NetworkCreator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkCreator.swift; sourceTree = "<group>"; };
+		D044BD8A25E57AF300E5554C /* TokenCreator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TokenCreator.swift; sourceTree = "<group>"; };
 		D0792C4F25E5234A00E5102C /* Crypto-T.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Crypto-T.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D0792C5225E5234A00E5102C /* CryptoTApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CryptoTApp.swift; sourceTree = "<group>"; };
 		D0792C5425E5234A00E5102C /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		D0792C5625E5234B00E5102C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		D0792C5925E5234B00E5102C /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		D0792C5B25E5234B00E5102C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		D0A05A1425E5740B003FCB66 /* CryptoNetwork.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CryptoNetwork.swift; sourceTree = "<group>"; };
+		D0A05A1825E5756F003FCB66 /* AuthData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthData.swift; sourceTree = "<group>"; };
+		D0A05A1E25E57705003FCB66 /* SignInView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInView.swift; sourceTree = "<group>"; };
+		D0A05A2225E57712003FCB66 /* SignUpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpView.swift; sourceTree = "<group>"; };
+		D0A05A2525E57732003FCB66 /* AuthView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthView.swift; sourceTree = "<group>"; };
+		D0A05A2A25E57771003FCB66 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
+		D0ED7ABC25E577F00018C086 /* NetworksListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworksListView.swift; sourceTree = "<group>"; };
+		D0ED7ABF25E577FE0018C086 /* MapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapView.swift; sourceTree = "<group>"; };
+		D0ED7AC225E578110018C086 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
+		D0ED7AC525E578850018C086 /* NetworkDetailsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkDetailsView.swift; sourceTree = "<group>"; };
+		D0ED7AC925E5789F0018C086 /* NetworkCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkCellView.swift; sourceTree = "<group>"; };
+		D0ED7ACD25E578AD0018C086 /* TokensListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TokensListView.swift; sourceTree = "<group>"; };
+		D0ED7AD025E578B50018C086 /* TokenCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TokenCellView.swift; sourceTree = "<group>"; };
+		D0ED7AD425E578C50018C086 /* TokenDetailsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TokenDetailsView.swift; sourceTree = "<group>"; };
+		D0ED7AD825E57A340018C086 /* SettingsData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsData.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -44,7 +84,6 @@
 				4E1D6874315813DC65A94ACC /* Pods-Crypto-T.debug.xcconfig */,
 				35BC58E3D493C238B5D539C0 /* Pods-Crypto-T.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -54,6 +93,41 @@
 				88279398B42EB9E253645E3E /* Pods_Crypto_T.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		D03068C925E530BB001E2707 /* map */ = {
+			isa = PBXGroup;
+			children = (
+				D0ED7ABF25E577FE0018C086 /* MapView.swift */,
+			);
+			path = map;
+			sourceTree = "<group>";
+		};
+		D03068CA25E530C2001E2707 /* settings */ = {
+			isa = PBXGroup;
+			children = (
+				D0ED7AC225E578110018C086 /* SettingsView.swift */,
+			);
+			path = settings;
+			sourceTree = "<group>";
+		};
+		D03068CB25E54988001E2707 /* auth */ = {
+			isa = PBXGroup;
+			children = (
+				D0A05A2825E57745003FCB66 /* signIn */,
+				D0A05A2925E5774B003FCB66 /* signUp */,
+				D0A05A2525E57732003FCB66 /* AuthView.swift */,
+			);
+			path = auth;
+			sourceTree = "<group>";
+		};
+		D044BD8625E57AD200E5554C /* creators */ = {
+			isa = PBXGroup;
+			children = (
+				D044BD8725E57AE300E5554C /* NetworkCreator.swift */,
+				D044BD8A25E57AF300E5554C /* TokenCreator.swift */,
+			);
+			path = creators;
 			sourceTree = "<group>";
 		};
 		D0792C4625E5234A00E5102C = {
@@ -95,9 +169,63 @@
 			path = "Preview Content";
 			sourceTree = "<group>";
 		};
+		D0A05A1C25E5768E003FCB66 /* home */ = {
+			isa = PBXGroup;
+			children = (
+				D0A05A1D25E5769D003FCB66 /* networks */,
+				D03068C925E530BB001E2707 /* map */,
+				D03068CA25E530C2001E2707 /* settings */,
+				D03068CC25E54B8F001E2707 /* MainTabView.swift */,
+				D0A05A2A25E57771003FCB66 /* HomeView.swift */,
+			);
+			path = home;
+			sourceTree = "<group>";
+		};
+		D0A05A1D25E5769D003FCB66 /* networks */ = {
+			isa = PBXGroup;
+			children = (
+				D0ED7AC825E5788D0018C086 /* tokens */,
+				D0ED7ABC25E577F00018C086 /* NetworksListView.swift */,
+				D0ED7AC925E5789F0018C086 /* NetworkCellView.swift */,
+				D0ED7AC525E578850018C086 /* NetworkDetailsView.swift */,
+			);
+			path = networks;
+			sourceTree = "<group>";
+		};
+		D0A05A2825E57745003FCB66 /* signIn */ = {
+			isa = PBXGroup;
+			children = (
+				D0A05A1E25E57705003FCB66 /* SignInView.swift */,
+			);
+			path = signIn;
+			sourceTree = "<group>";
+		};
+		D0A05A2925E5774B003FCB66 /* signUp */ = {
+			isa = PBXGroup;
+			children = (
+				D0A05A2225E57712003FCB66 /* SignUpView.swift */,
+			);
+			path = signUp;
+			sourceTree = "<group>";
+		};
+		D0ED7AC825E5788D0018C086 /* tokens */ = {
+			isa = PBXGroup;
+			children = (
+				D0ED7ACD25E578AD0018C086 /* TokensListView.swift */,
+				D0ED7AD025E578B50018C086 /* TokenCellView.swift */,
+				D0ED7AD425E578C50018C086 /* TokenDetailsView.swift */,
+			);
+			path = tokens;
+			sourceTree = "<group>";
+		};
 		D0F9871725E528480094BBB2 /* models */ = {
 			isa = PBXGroup;
 			children = (
+				D0A05A1425E5740B003FCB66 /* CryptoNetwork.swift */,
+				D03068D525E55D8A001E2707 /* CryptoAsset.swift */,
+				D0A05A1825E5756F003FCB66 /* AuthData.swift */,
+				D0ED7AD825E57A340018C086 /* SettingsData.swift */,
+				D03068D225E554AD001E2707 /* Dashboard.swift */,
 			);
 			path = models;
 			sourceTree = "<group>";
@@ -105,6 +233,9 @@
 		D0F9871825E528510094BBB2 /* views */ = {
 			isa = PBXGroup;
 			children = (
+				D044BD8625E57AD200E5554C /* creators */,
+				D03068CB25E54988001E2707 /* auth */,
+				D0A05A1C25E5768E003FCB66 /* home */,
 				D0792C5425E5234A00E5102C /* ContentView.swift */,
 			);
 			path = views;
@@ -205,8 +336,28 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D044BD8B25E57AF300E5554C /* TokenCreator.swift in Sources */,
 				D0792C5525E5234A00E5102C /* ContentView.swift in Sources */,
+				D0ED7ABD25E577F00018C086 /* NetworksListView.swift in Sources */,
+				D0ED7AD125E578B50018C086 /* TokenCellView.swift in Sources */,
+				D0ED7AD525E578C50018C086 /* TokenDetailsView.swift in Sources */,
 				D0792C5325E5234A00E5102C /* CryptoTApp.swift in Sources */,
+				D0ED7ACE25E578AD0018C086 /* TokensListView.swift in Sources */,
+				D03068D625E55D8A001E2707 /* CryptoAsset.swift in Sources */,
+				D044BD8825E57AE300E5554C /* NetworkCreator.swift in Sources */,
+				D0ED7AC025E577FE0018C086 /* MapView.swift in Sources */,
+				D0ED7ACA25E5789F0018C086 /* NetworkCellView.swift in Sources */,
+				D0A05A1925E5756F003FCB66 /* AuthData.swift in Sources */,
+				D0A05A1525E5740B003FCB66 /* CryptoNetwork.swift in Sources */,
+				D0ED7AC325E578110018C086 /* SettingsView.swift in Sources */,
+				D0ED7AD925E57A340018C086 /* SettingsData.swift in Sources */,
+				D0A05A2B25E57771003FCB66 /* HomeView.swift in Sources */,
+				D0ED7AC625E578850018C086 /* NetworkDetailsView.swift in Sources */,
+				D03068D325E554AD001E2707 /* Dashboard.swift in Sources */,
+				D0A05A2625E57732003FCB66 /* AuthView.swift in Sources */,
+				D0A05A1F25E57705003FCB66 /* SignInView.swift in Sources */,
+				D0A05A2325E57712003FCB66 /* SignUpView.swift in Sources */,
+				D03068CD25E54B8F001E2707 /* MainTabView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
