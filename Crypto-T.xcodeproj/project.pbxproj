@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		D0792C5325E5234A00E5102C /* Crypto_TApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0792C5225E5234A00E5102C /* Crypto_TApp.swift */; };
+		D0792C5325E5234A00E5102C /* CryptoTApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0792C5225E5234A00E5102C /* CryptoTApp.swift */; };
 		D0792C5525E5234A00E5102C /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0792C5425E5234A00E5102C /* ContentView.swift */; };
 		D0792C5725E5234B00E5102C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D0792C5625E5234B00E5102C /* Assets.xcassets */; };
 		D0792C5A25E5234B00E5102C /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D0792C5925E5234B00E5102C /* Preview Assets.xcassets */; };
@@ -15,7 +15,7 @@
 
 /* Begin PBXFileReference section */
 		D0792C4F25E5234A00E5102C /* Crypto-T.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Crypto-T.app"; sourceTree = BUILT_PRODUCTS_DIR; };
-		D0792C5225E5234A00E5102C /* Crypto_TApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Crypto_TApp.swift; sourceTree = "<group>"; };
+		D0792C5225E5234A00E5102C /* CryptoTApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CryptoTApp.swift; sourceTree = "<group>"; };
 		D0792C5425E5234A00E5102C /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		D0792C5625E5234B00E5102C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		D0792C5925E5234B00E5102C /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
@@ -52,7 +52,7 @@
 		D0792C5125E5234A00E5102C /* Crypto-T */ = {
 			isa = PBXGroup;
 			children = (
-				D0792C5225E5234A00E5102C /* Crypto_TApp.swift */,
+				D0792C5225E5234A00E5102C /* CryptoTApp.swift */,
 				D0792C5425E5234A00E5102C /* ContentView.swift */,
 				D0792C5625E5234B00E5102C /* Assets.xcassets */,
 				D0792C5B25E5234B00E5102C /* Info.plist */,
@@ -139,7 +139,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				D0792C5525E5234A00E5102C /* ContentView.swift in Sources */,
-				D0792C5325E5234A00E5102C /* Crypto_TApp.swift in Sources */,
+				D0792C5325E5234A00E5102C /* CryptoTApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
