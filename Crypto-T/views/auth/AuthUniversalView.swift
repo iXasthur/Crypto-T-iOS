@@ -11,8 +11,8 @@ struct AuthUniversalView: View {
     
     @EnvironmentObject var session: Session
     
-    @State var email: String = ""
-    @State var password: String = ""
+    @State var email: String = "api@example.com"
+    @State var password: String = "123456"
     
     @State var errorText: String? = nil
     
