@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -23,6 +23,7 @@
 		D0A05A2325E57712003FCB66 /* SignUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0A05A2225E57712003FCB66 /* SignUpView.swift */; };
 		D0A05A2625E57732003FCB66 /* AuthView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0A05A2525E57732003FCB66 /* AuthView.swift */; };
 		D0A05A2B25E57771003FCB66 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0A05A2A25E57771003FCB66 /* HomeView.swift */; };
+		D0E24FC925E6A8A2000B5C8F /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = D0E24FC825E6A8A2000B5C8F /* GoogleService-Info.plist */; };
 		D0ED7ABD25E577F00018C086 /* NetworksListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0ED7ABC25E577F00018C086 /* NetworksListView.swift */; };
 		D0ED7AC025E577FE0018C086 /* MapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0ED7ABF25E577FE0018C086 /* MapView.swift */; };
 		D0ED7AC325E578110018C086 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0ED7AC225E578110018C086 /* SettingsView.swift */; };
@@ -55,6 +56,7 @@
 		D0A05A2225E57712003FCB66 /* SignUpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpView.swift; sourceTree = "<group>"; };
 		D0A05A2525E57732003FCB66 /* AuthView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthView.swift; sourceTree = "<group>"; };
 		D0A05A2A25E57771003FCB66 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
+		D0E24FC825E6A8A2000B5C8F /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		D0ED7ABC25E577F00018C086 /* NetworksListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworksListView.swift; sourceTree = "<group>"; };
 		D0ED7ABF25E577FE0018C086 /* MapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapView.swift; sourceTree = "<group>"; };
 		D0ED7AC225E578110018C086 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
@@ -154,8 +156,9 @@
 				D0F9871725E528480094BBB2 /* models */,
 				D0F9871825E528510094BBB2 /* views */,
 				D0792C5225E5234A00E5102C /* CryptoTApp.swift */,
-				D0792C5625E5234B00E5102C /* Assets.xcassets */,
+				D0E24FC825E6A8A2000B5C8F /* GoogleService-Info.plist */,
 				D0792C5B25E5234B00E5102C /* Info.plist */,
+				D0792C5625E5234B00E5102C /* Assets.xcassets */,
 				D0792C5825E5234B00E5102C /* Preview Content */,
 			);
 			path = "Crypto-T";
@@ -302,6 +305,7 @@
 			files = (
 				D0792C5A25E5234B00E5102C /* Preview Assets.xcassets in Resources */,
 				D0792C5725E5234B00E5102C /* Assets.xcassets in Resources */,
+				D0E24FC925E6A8A2000B5C8F /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
