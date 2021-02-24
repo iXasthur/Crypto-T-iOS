@@ -85,14 +85,10 @@ struct AuthUniversalView: View {
                         }
                         .padding(.bottom, 25)
                         
-                        VStack {
-                            if errorText != nil {
-                                Text(errorText!)
-                                    .fontWeight(.semibold)
-                                    .foregroundColor(.red)
-                                    .multilineTextAlignment(.center)
-                            }
-                        }
+                        Text(errorText ?? "")
+                            .fontWeight(.semibold)
+                            .foregroundColor(.red)
+                            .multilineTextAlignment(.center)
                     }
                     .padding()
                     .frame(width: geometry.size.width)
@@ -135,10 +131,14 @@ struct AuthUniversalView: View {
         UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
         
         if validateEmailPassword() {
-            progress = true
+            withAnimation {
+                progress = true
+            }
             
             session.signInEmail(email: email, password: password) { (error) in
-                progress = false
+                withAnimation {
+                    progress = false
+                }
                 
                 if let error = error {
                     self.errorText = error.localizedDescription
@@ -151,10 +151,14 @@ struct AuthUniversalView: View {
         UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
         
         if validateEmailPassword() {
-            progress = true
+            withAnimation {
+                progress = true
+            }
             
             session.signUpEmail(email: email, password: password) { (error) in
-                progress = false
+                withAnimation {
+                    progress = false
+                }
                 
                 if let error = error {
                     self.errorText = error.localizedDescription
