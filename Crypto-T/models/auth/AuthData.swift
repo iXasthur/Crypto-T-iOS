@@ -10,4 +10,12 @@ import Foundation
 
 struct AuthData: Codable {
     
+    func save() {
+        // Save to local storage
+    }
+    
+    static func restore() -> AuthData? {
+        return nil
+    }
+    
 }

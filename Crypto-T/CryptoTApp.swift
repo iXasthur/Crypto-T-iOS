@@ -13,20 +13,23 @@ struct CryptoTApp: App {
     
     @UIApplicationDelegateAdaptor private var appDelegate: AppDelegate
     
-    @StateObject var dashboard = Dashboard()
+    @StateObject var session = Session()
     
     var body: some Scene {
         WindowGroup {
             ContentView()
-                .environmentObject(dashboard)
+                .environmentObject(session)
+                .onAppear {
+                    
+                }
         }
     }
     
     class AppDelegate: NSObject, UIApplicationDelegate {
         func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey : Any]? = nil) -> Bool {
-          FirebaseApp.configure()
-          return true
+            FirebaseApp.configure()
+            return true
         }
-      }
+    }
     
 }

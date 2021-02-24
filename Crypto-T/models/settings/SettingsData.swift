@@ -9,11 +9,13 @@ import Foundation
 
 
 struct SettingsData: Codable {
-    static func save() {
+    
+    func save() {
         // Save to local storage
     }
     
-    static func restore() -> SettingsData {
-        return SettingsData()
+    static func restore() -> SettingsData? {
+        return nil
     }
+    
 }

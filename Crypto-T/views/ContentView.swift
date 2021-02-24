@@ -8,8 +8,14 @@
 import SwiftUI
 
 struct ContentView: View {
+    
+    @EnvironmentObject var session: Session
+    
     var body: some View {
-        Text("Hello, world!")
-            .padding()
+        AuthView()
+            .fullScreenCover(
+                isPresented: $session.initialized,
+                content: HomeView.init
+            )
     }
 }
