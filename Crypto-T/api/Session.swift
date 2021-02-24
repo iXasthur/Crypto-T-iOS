@@ -38,19 +38,16 @@ class Session: ObservableObject {
         dashboard = nil
     }
     
-    func restore(completion: @escaping (Error?) -> Void) {
+    func restore(completion: @escaping (Error?) -> Void) -> AuthData? {
         if let authData = AuthDataStorage.restoreFromKeychain() {
             signInEmail(email: authData.email, password: authData.password) { (error) in
                 self.handleFirebaseAuthResponse(authData: authData, error: error, completion: completion)
             }
+            return authData
         } else {
-            let error = NSError(
-                domain: "",
-                code: 0,
-                userInfo: [
-                    NSLocalizedDescriptionKey : ""
-                ])
+            let error = NSError()
             completion(error)
+            return nil
         }
     }
     

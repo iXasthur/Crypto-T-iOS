@@ -135,7 +135,7 @@ struct AuthUniversalView: View {
             progress = true
         }
         
-        session.restore { (error) in
+        if let authData = session.restore(completion: { (error) in
             withAnimation {
                 progress = false
             }
@@ -143,6 +143,9 @@ struct AuthUniversalView: View {
             if let error = error {
                 self.errorText = error.localizedDescription
             }
+        }) {
+            email = authData.email
+            password = authData.password
         }
     }
     
