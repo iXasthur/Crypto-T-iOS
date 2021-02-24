@@ -11,6 +11,7 @@
 		D03068CD25E54B8F001E2707 /* MainTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D03068CC25E54B8F001E2707 /* MainTabView.swift */; };
 		D03068D325E554AD001E2707 /* CryptoDashboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = D03068D225E554AD001E2707 /* CryptoDashboard.swift */; };
 		D03068D625E55D8A001E2707 /* CryptoAsset.swift in Sources */ = {isa = PBXBuildFile; fileRef = D03068D525E55D8A001E2707 /* CryptoAsset.swift */; };
+		D0369B1C25E6BB1D00DAAFA3 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0369B1B25E6BB1D00DAAFA3 /* Constants.swift */; };
 		D044BD8825E57AE300E5554C /* NetworkCreator.swift in Sources */ = {isa = PBXBuildFile; fileRef = D044BD8725E57AE300E5554C /* NetworkCreator.swift */; };
 		D044BD8B25E57AF300E5554C /* TokenCreator.swift in Sources */ = {isa = PBXBuildFile; fileRef = D044BD8A25E57AF300E5554C /* TokenCreator.swift */; };
 		D0792C5325E5234A00E5102C /* CryptoTApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0792C5225E5234A00E5102C /* CryptoTApp.swift */; };
@@ -42,6 +43,7 @@
 		D03068CC25E54B8F001E2707 /* MainTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabView.swift; sourceTree = "<group>"; };
 		D03068D225E554AD001E2707 /* CryptoDashboard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CryptoDashboard.swift; sourceTree = "<group>"; };
 		D03068D525E55D8A001E2707 /* CryptoAsset.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CryptoAsset.swift; sourceTree = "<group>"; };
+		D0369B1B25E6BB1D00DAAFA3 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		D044BD8725E57AE300E5554C /* NetworkCreator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkCreator.swift; sourceTree = "<group>"; };
 		D044BD8A25E57AF300E5554C /* TokenCreator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TokenCreator.swift; sourceTree = "<group>"; };
 		D0792C4F25E5234A00E5102C /* Crypto-T.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Crypto-T.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -225,6 +227,7 @@
 		D0E24FD025E6ACA1000B5C8F /* utils */ = {
 			isa = PBXGroup;
 			children = (
+				D0369B1B25E6BB1D00DAAFA3 /* Constants.swift */,
 			);
 			path = utils;
 			sourceTree = "<group>";
@@ -388,6 +391,7 @@
 				D0ED7AD125E578B50018C086 /* TokenCellView.swift in Sources */,
 				D0ED7AD525E578C50018C086 /* TokenDetailsView.swift in Sources */,
 				D0792C5325E5234A00E5102C /* CryptoTApp.swift in Sources */,
+				D0369B1C25E6BB1D00DAAFA3 /* Constants.swift in Sources */,
 				D0ED7ACE25E578AD0018C086 /* TokensListView.swift in Sources */,
 				D03068D625E55D8A001E2707 /* CryptoAsset.swift in Sources */,
 				D0F4CC7D25E6B87D00C77DFE /* AuthUniversalView.swift in Sources */,

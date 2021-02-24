@@ -27,6 +27,7 @@ struct CryptoTApp: App {
     
     class AppDelegate: NSObject, UIApplicationDelegate {
         func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey : Any]? = nil) -> Bool {
+            UIScrollView.appearance().keyboardDismissMode = .onDrag
             FirebaseApp.configure()
             return true
         }
