@@ -7,4 +7,9 @@ target 'Crypto-T' do
 
   # Pods for Crypto-T
 
+  # Firebase
+  pod 'Firebase/Auth'
+  pod 'Firebase/Firestore'
+  pod 'Firebase/Storage'
+
 end
