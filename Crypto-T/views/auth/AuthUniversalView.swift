@@ -14,7 +14,7 @@ struct AuthUniversalView: View {
     @State var email: String = "api@example.com"
     @State var password: String = "123456"
     
-    @State var errorText: String? = nil
+    @State var errorText: String = ""
     
     @State var progress: Bool = false
     
@@ -85,7 +85,7 @@ struct AuthUniversalView: View {
                         }
                         .padding(.bottom, 25)
                         
-                        Text(errorText ?? "")
+                        Text(errorText)
                             .fontWeight(.semibold)
                             .foregroundColor(.red)
                             .multilineTextAlignment(.center)
