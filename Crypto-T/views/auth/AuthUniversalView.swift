@@ -11,8 +11,8 @@ struct AuthUniversalView: View {
     
     @EnvironmentObject var session: Session
     
-    @State var email: String = "api@example.com"
-    @State var password: String = "123456"
+    @State var email: String = ""
+    @State var password: String = ""
     
     @State var errorText: String = ""
     
@@ -102,6 +102,9 @@ struct AuthUniversalView: View {
             }
         }
         .allowsHitTesting(!progress)
+        .onAppear {
+            restoreSession()
+        }
     }
     
     func validateEmailPassword() -> Bool {
@@ -124,6 +127,22 @@ struct AuthUniversalView: View {
             return false
         } else {
             return true
+        }
+    }
+    
+    func restoreSession() {
+        withAnimation {
+            progress = true
+        }
+        
+        session.restore { (error) in
+            withAnimation {
+                progress = false
+            }
+            
+            if let error = error {
+                self.errorText = error.localizedDescription
+            }
         }
     }
     

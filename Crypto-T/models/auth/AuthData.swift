@@ -9,16 +9,6 @@ import Foundation
 
 
 struct AuthData: Codable {
-    
     var email: String
     var password: String
-    
-    func save() {
-        // Save to local storage
-    }
-    
-    static func restore() -> AuthData? {
-        return nil
-    }
-    
 }

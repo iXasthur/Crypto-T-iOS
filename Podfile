@@ -12,4 +12,5 @@ target 'Crypto-T' do
   pod 'Firebase/Firestore'
   pod 'Firebase/Storage'
 
+  pod 'SwiftKeychainWrapper'
 end

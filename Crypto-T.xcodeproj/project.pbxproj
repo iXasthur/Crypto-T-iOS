@@ -34,6 +34,7 @@
 		D0ED7AD525E578C50018C086 /* TokenDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0ED7AD425E578C50018C086 /* TokenDetailsView.swift */; };
 		D0ED7AD925E57A340018C086 /* SettingsData.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0ED7AD825E57A340018C086 /* SettingsData.swift */; };
 		D0F4CC7D25E6B87D00C77DFE /* AuthUniversalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0F4CC7C25E6B87D00C77DFE /* AuthUniversalView.swift */; };
+		D0FF2A3B25E6F920004043CF /* AuthDataStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0FF2A3A25E6F920004043CF /* AuthDataStorage.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -68,6 +69,7 @@
 		D0ED7AD425E578C50018C086 /* TokenDetailsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TokenDetailsView.swift; sourceTree = "<group>"; };
 		D0ED7AD825E57A340018C086 /* SettingsData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsData.swift; sourceTree = "<group>"; };
 		D0F4CC7C25E6B87D00C77DFE /* AuthUniversalView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthUniversalView.swift; sourceTree = "<group>"; };
+		D0FF2A3A25E6F920004043CF /* AuthDataStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthDataStorage.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -227,6 +229,7 @@
 		D0E24FD025E6ACA1000B5C8F /* utils */ = {
 			isa = PBXGroup;
 			children = (
+				D0FF2A3A25E6F920004043CF /* AuthDataStorage.swift */,
 				D0369B1B25E6BB1D00DAAFA3 /* Constants.swift */,
 			);
 			path = utils;
@@ -254,8 +257,8 @@
 			isa = PBXGroup;
 			children = (
 				D0E24FCC25E6AC5D000B5C8F /* crypto */,
-				D0E24FCE25E6AC8A000B5C8F /* auth */,
 				D0E24FCF25E6AC8F000B5C8F /* settings */,
+				D0E24FCE25E6AC8A000B5C8F /* auth */,
 			);
 			path = models;
 			sourceTree = "<group>";
@@ -386,6 +389,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				D044BD8B25E57AF300E5554C /* TokenCreator.swift in Sources */,
+				D0FF2A3B25E6F920004043CF /* AuthDataStorage.swift in Sources */,
 				D0792C5525E5234A00E5102C /* ContentView.swift in Sources */,
 				D0ED7ABD25E577F00018C086 /* NetworksListView.swift in Sources */,
 				D0ED7AD125E578B50018C086 /* TokenCellView.swift in Sources */,
