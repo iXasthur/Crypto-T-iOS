@@ -16,83 +16,148 @@ struct AuthUniversalView: View {
     
     @State var errorText: String? = nil
     
+    @State var progress: Bool = false
+    
     var body: some View {
-        GeometryReader { geometry in
-            ScrollView(showsIndicators: false) {
-                VStack {
-                    Text("Welcome!")
-                        .font(.largeTitle)
-                        .fontWeight(.semibold)
-                    
-                    VStack(spacing: 10) {
-                        HStack {
-                            Image(systemName: "person")
-                                .foregroundColor(.secondary)
-                            TextField("Email", text: $email)
-                                .foregroundColor(.primary)
-                                .disableAutocorrection(true)
-                                .autocapitalization(.none)
-                        }
-                        .padding(.horizontal)
-                        .frame(maxWidth: .infinity, minHeight: 50)
-                        .overlay(
-                            RoundedRectangle(cornerRadius: Constants.uiCornerRadius)
-                                .stroke(Color.purple.opacity(0.5), lineWidth: 2)
-                        )
-                        
-                        HStack {
-                            Image(systemName: "key")
-                                .foregroundColor(.secondary)
-                            SecureField("Password", text: $password)
-                                .foregroundColor(.primary)
-                                .disableAutocorrection(true)
-                                .autocapitalization(.none)
-                        }
-                        .padding(.horizontal)
-                        .frame(maxWidth: .infinity, minHeight: 50)
-                        .overlay(
-                            RoundedRectangle(cornerRadius: Constants.uiCornerRadius)
-                                .stroke(Color.purple.opacity(0.5), lineWidth: 2)
-                        )
-                    }
-                    .padding(.bottom, 25)
-                    
-                    HStack {
-                        Button(action: {
-                            print("Sign Up")
-                            
-                        }) {
-                            Text("Sign Up")
-                                .font(.headline)
-                                .foregroundColor(.white)
-                                .frame(maxWidth: .infinity, minHeight: 50)
-                                .background(Color.green.opacity(0.6))
-                                .cornerRadius(Constants.uiCornerRadius)
-                        }
-                        
-                        Button(action: {
-                            print("Sign In")
-                            
-                        }) {
-                            Text("Sign In")
-                                .font(.headline)
-                                .foregroundColor(.white)
-                                .frame(maxWidth: .infinity, minHeight: 50)
-                                .background(Color.green.opacity(0.8))
-                                .cornerRadius(Constants.uiCornerRadius)
-                        }
-                    }
-                    .padding(.bottom, 25)
-                    
-                    if errorText != nil {
-                        Text(errorText!)
+        ZStack {
+            GeometryReader { geometry in
+                ScrollView(showsIndicators: false) {
+                    VStack {
+                        Text("Welcome!")
+                            .font(.largeTitle)
                             .fontWeight(.semibold)
-                            .foregroundColor(.red)
+                        
+                        VStack(spacing: 10) {
+                            HStack {
+                                Image(systemName: "person")
+                                    .foregroundColor(.secondary)
+                                TextField("Email", text: $email)
+                                    .foregroundColor(.primary)
+                                    .disableAutocorrection(true)
+                                    .autocapitalization(.none)
+                            }
+                            .padding(.horizontal)
+                            .frame(maxWidth: .infinity, minHeight: 50)
+                            .overlay(
+                                RoundedRectangle(cornerRadius: Constants.uiCornerRadius)
+                                    .stroke(Color.purple.opacity(0.5), lineWidth: 2)
+                            )
+                            
+                            HStack {
+                                Image(systemName: "key")
+                                    .foregroundColor(.secondary)
+                                SecureField("Password", text: $password)
+                                    .foregroundColor(.primary)
+                                    .disableAutocorrection(true)
+                                    .autocapitalization(.none)
+                            }
+                            .padding(.horizontal)
+                            .frame(maxWidth: .infinity, minHeight: 50)
+                            .overlay(
+                                RoundedRectangle(cornerRadius: Constants.uiCornerRadius)
+                                    .stroke(Color.purple.opacity(0.5), lineWidth: 2)
+                            )
+                        }
+                        .padding(.bottom, 25)
+                        
+                        HStack {
+                            Button(action: {
+                                signUpTap()
+                                
+                            }) {
+                                Text("Sign Up")
+                                    .font(.headline)
+                                    .foregroundColor(.white)
+                                    .frame(maxWidth: .infinity, minHeight: 50)
+                                    .background(Color.green.opacity(0.6))
+                                    .cornerRadius(Constants.uiCornerRadius)
+                            }
+                            
+                            Button(action: {
+                                signInTap()
+                                
+                            }) {
+                                Text("Sign In")
+                                    .font(.headline)
+                                    .foregroundColor(.white)
+                                    .frame(maxWidth: .infinity, minHeight: 50)
+                                    .background(Color.green.opacity(0.8))
+                                    .cornerRadius(Constants.uiCornerRadius)
+                            }
+                        }
+                        .padding(.bottom, 25)
+                        
+                        if errorText != nil {
+                            Text(errorText!)
+                                .fontWeight(.semibold)
+                                .foregroundColor(.red)
+                                .multilineTextAlignment(.center)
+                        }
                     }
+                    .padding()
+                    .frame(width: geometry.size.width)
+                    .frame(minHeight: geometry.size.height)
                 }
-                .padding()
-                .frame(width: geometry.size.width)
-                .frame(minHeight: geometry.size.height)
+            }
+            
+            
+            if progress {
+                ProgressView()
+            }
+        }
+        .allowsHitTesting(!progress)
+    }
+    
+    func validateEmailPassword() -> Bool {
+        var newErrorText: String? = nil
+        
+        if email.isEmpty {
+            newErrorText = (newErrorText ?? "") + "Email must be not empty."
+        }
+        
+        if password.isEmpty {
+            if newErrorText != nil {
+                newErrorText = newErrorText! + "\nPassword must be not empty."
+            } else {
+                newErrorText = "Password must be not empty."
+            }
+        }
+        
+        if newErrorText != nil {
+            errorText = newErrorText!
+            return false
+        } else {
+            return true
+        }
+    }
+    
+    func signInTap() {
+        UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
+        
+        if validateEmailPassword() {
+            progress = true
+            session.signInEmail(email: email, password: password) { (error) in
+                progress = false
+                
+                if let error = error {
+                    self.errorText = error.localizedDescription
+                }
+            }
+        }
+    }
+    
+    func signUpTap() {
+        UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
+        
+        if validateEmailPassword() {
+            progress = false
+            
+            session.signUpEmail(email: email, password: password) { (error) in
+                progress = false
+                
+                if let error = error {
+                    self.errorText = error.localizedDescription
+                }
             }
         }
     }
