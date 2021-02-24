@@ -63,19 +63,17 @@ struct AuthUniversalView: View {
                         HStack {
                             Button(action: {
                                 signUpTap()
-                                
                             }) {
                                 Text("Sign Up")
                                     .font(.headline)
                                     .foregroundColor(.white)
                                     .frame(maxWidth: .infinity, minHeight: 50)
-                                    .background(Color.green.opacity(0.6))
+                                    .background(Color.blue.opacity(0.4))
                                     .cornerRadius(Constants.uiCornerRadius)
                             }
                             
                             Button(action: {
                                 signInTap()
-                                
                             }) {
                                 Text("Sign In")
                                     .font(.headline)
@@ -87,11 +85,13 @@ struct AuthUniversalView: View {
                         }
                         .padding(.bottom, 25)
                         
-                        if errorText != nil {
-                            Text(errorText!)
-                                .fontWeight(.semibold)
-                                .foregroundColor(.red)
-                                .multilineTextAlignment(.center)
+                        VStack {
+                            if errorText != nil {
+                                Text(errorText!)
+                                    .fontWeight(.semibold)
+                                    .foregroundColor(.red)
+                                    .multilineTextAlignment(.center)
+                            }
                         }
                     }
                     .padding()
@@ -136,6 +136,7 @@ struct AuthUniversalView: View {
         
         if validateEmailPassword() {
             progress = true
+            
             session.signInEmail(email: email, password: password) { (error) in
                 progress = false
                 
@@ -150,7 +151,7 @@ struct AuthUniversalView: View {
         UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
         
         if validateEmailPassword() {
-            progress = false
+            progress = true
             
             session.signUpEmail(email: email, password: password) { (error) in
                 progress = false
