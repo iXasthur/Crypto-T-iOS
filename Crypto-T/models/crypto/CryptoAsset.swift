@@ -6,11 +6,12 @@
 //
 
 import Foundation
+import ObjectMapper
 
 
 struct CryptoAsset: Codable, Identifiable {
     var id: String = UUID().uuidString
-     
+    
     var name: String // Bitcoin
     var code: String // BTC
     var description: String // ...
