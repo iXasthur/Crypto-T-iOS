@@ -10,15 +10,39 @@ import Firebase
 
 class Session: ObservableObject {
     
-    @Published var authData: AuthData? = nil
-    @Published var dashboard: CryptoDashboard? = nil
+    @Published private var authData: AuthData? = nil
+    @Published private var dashboard: CryptoDashboard? = nil
     
     @Published var initialized: Bool = false
+    
+    func getLocalAssets() -> [CryptoAsset]? {
+        return dashboard?.assets
+    }
+    
+    func getLocalPlatforms() -> [CryptoPlatform]? {
+        return dashboard?.platforms
+    }
+    
+    private func addLocalAsset(_ asset: CryptoAsset) {
+        dashboard?.assets.append(asset)
+    }
+    
+    func createNewAsset(_ asset: CryptoAsset, completion: @escaping (Error?) -> Void) {
+        // Add to firebase then to local
+        addLocalAsset(asset)
+        completion(nil)
+    }
+    
+    func setupDashboard() {
+        dashboard = CryptoDashboard()
+    }
     
     private func initialize(_ authData: AuthData) -> Bool {
         self.authData = authData
         
         AuthDataStorage.saveToKeychain(authData)
+        
+        setupDashboard()
         
         initialized = true
         return initialized

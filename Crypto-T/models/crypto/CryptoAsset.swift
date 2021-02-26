@@ -13,7 +13,7 @@ struct CryptoAsset: Codable, Identifiable {
      
     var name: String // Bitcoin
     var code: String // BTC
-    var description: String? // ...
+    var description: String // ...
     var iconURL: String? // url
     var promoVideoURL: String? // url
 }

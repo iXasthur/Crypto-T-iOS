@@ -16,7 +16,7 @@ struct PlatformsListView: View {
     var body: some View {
         NavigationView {
             ScrollView {
-                if let platforms = session.dashboard?.platforms {
+                if let platforms = session.getLocalPlatforms(), !platforms.isEmpty {
                     LazyVStack {
                         ForEach(platforms) { platform in
                             PlatformCellView(platform: platform)

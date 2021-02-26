@@ -13,10 +13,12 @@ struct CryptosListView: View {
     
     @EnvironmentObject var session: Session
     
+    @State var showCryptoCreator: Bool = false
+    
     var body: some View {
         NavigationView {
             ScrollView {
-                if let assets = session.dashboard?.assets {
+                if let assets = session.getLocalAssets(), !assets.isEmpty {
                     LazyVStack {
                         ForEach(assets) { asset in
                             CryptoCellView(asset: asset)
@@ -35,11 +37,15 @@ struct CryptosListView: View {
             .toolbar {
                 ToolbarItem(placement: .navigationBarTrailing) {
                     Button {
-                        print("Tapped plus!")
+                        showCryptoCreator.toggle()
                     } label: {
                         Image(systemName: "plus")
                     }
                 }
+            }
+            .sheet(isPresented: $showCryptoCreator) {
+                CryptoCreatorView(isPresented: $showCryptoCreator)
+                    .environmentObject(session)
             }
         }
     }
