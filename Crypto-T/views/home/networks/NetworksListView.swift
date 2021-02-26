@@ -9,6 +9,9 @@ import SwiftUI
 
 struct NetworksListView: View {
     var body: some View {
-        Text("Hello, World!")
+        NavigationView {
+            Text("")
+                .navigationBarTitle("Networks")
+        }
     }
 }

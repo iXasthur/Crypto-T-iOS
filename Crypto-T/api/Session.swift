@@ -45,7 +45,12 @@ class Session: ObservableObject {
             }
             return authData
         } else {
-            let error = NSError()
+            let error = NSError(
+                domain: "",
+                code: 0,
+                userInfo: [
+                    NSLocalizedDescriptionKey : "Unable to restore session"
+                ])
             completion(error)
             return nil
         }

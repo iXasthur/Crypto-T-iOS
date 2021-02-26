@@ -9,6 +9,21 @@ import SwiftUI
 
 struct MainTabView: View {
     var body: some View {
-        Text("123")
+        TabView {
+            NetworksListView()
+                .tabItem {
+                    Label("List", systemImage: "cube")
+                }
+            
+            MapView()
+                .tabItem {
+                    Label("Map", systemImage: "map")
+                }
+            
+            SettingsView()
+                .tabItem {
+                    Label("Settings", systemImage: "gearshape")
+                }
+        }
     }
 }

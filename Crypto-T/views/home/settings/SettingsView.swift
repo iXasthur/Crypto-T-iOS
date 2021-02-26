@@ -8,7 +8,24 @@
 import SwiftUI
 
 struct SettingsView: View {
+    
+    @EnvironmentObject var session: Session
+    
+    
     var body: some View {
-        Text("Hello, World!")
+        NavigationView {
+            Form {
+                Section(header: Text("General")) {
+                    Section {
+                        Button(action: {
+                            session.destroy()
+                        }) {
+                            Text("Log Out")
+                        }
+                    }
+                }
+            }
+            .navigationBarTitle("Settings")
+        }
     }
 }
