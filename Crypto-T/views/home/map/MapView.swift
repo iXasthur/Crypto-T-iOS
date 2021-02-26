@@ -11,7 +11,7 @@ struct MapView: View {
     var body: some View {
         NavigationView {
             Text("Map is unavailable")
-                .navigationBarTitle("Map")
+                .navigationBarTitle("Map", displayMode: .inline)
         }
     }
 }

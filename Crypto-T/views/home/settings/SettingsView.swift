@@ -24,7 +24,7 @@ struct SettingsView: View {
                     }
                 }
             }
-            .navigationBarTitle("Settings")
+            .navigationBarTitle("Settings", displayMode: .inline)
         }
     }
 }

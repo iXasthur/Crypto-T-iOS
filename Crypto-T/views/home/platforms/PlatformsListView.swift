@@ -31,7 +31,7 @@ struct PlatformsListView: View {
                         .navigationBarTitle(title)
                 }
             }
-            .navigationBarTitle(title)
+            .navigationBarTitle(title, displayMode: .inline)
             .toolbar {
                 ToolbarItem(placement: .navigationBarTrailing) {
                     Button {
