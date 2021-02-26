@@ -90,7 +90,7 @@ struct CryptoCreatorView: View {
                                 progress = true
                             }
                             
-                            session.createNewAsset(asset) { (error) in
+                            session.updateRemoteAsset(asset) { (error) in
                                 progress = false
                                 
                                 if error == nil {

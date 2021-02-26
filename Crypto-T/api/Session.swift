@@ -10,112 +10,42 @@ import Firebase
 
 class Session: ObservableObject {
     
-    let assetsCollectionFirebaseTag = "assets"
-    
     @Published private var authData: AuthData? = nil
     @Published private var dashboard: CryptoDashboard? = nil
     
     @Published var initialized: Bool = false
     
-    private var db = Firebase.Firestore.firestore()
+    private let cryptoAssetManager = CryptoAssetFirebaseManager()
     
     
     func getLocalAssets() -> [CryptoAsset]? {
         return dashboard?.assets
     }
     
-    func getLocalPlatforms() -> [CryptoPlatform]? {
-        return dashboard?.platforms
-    }
-    
-    private func addLocalAsset(_ asset: CryptoAsset) {
-        dashboard?.assets.append(asset)
-    }
-    
-    private func updateRemoteAsset(_ asset: CryptoAsset, completion: @escaping (Error?) -> Void) {
-        let encoder = JSONEncoder()
-        
-        do {
-            let data = try encoder.encode(asset)
-            if var json = try? JSONSerialization.jsonObject(with: data, options: []) as? [String: Any] {
-                json.removeValue(forKey: "id")
-                
-                let document = db.collection(assetsCollectionFirebaseTag).document(asset.id)
-                document.setData(json) { error in
-                    if let error = error {
-                        print("Error writing document: \(error)")
-                        completion(error)
-                    } else {
-                        print("Document successfully written!")
-                        completion(nil)
-                    }
-                }
-            } else {
-                let error = NSError(
-                    domain: "",
-                    code: 0,
-                    userInfo: [
-                        NSLocalizedDescriptionKey : "Unable to create json object"
-                    ])
-                completion(error)
-            }
-        } catch {
-            let error = NSError(
-                domain: "",
-                code: 0,
-                userInfo: [
-                    NSLocalizedDescriptionKey : "Unable to encode crypto asset"
-                ])
-            completion(error)
+    private func updateLocalAsset(_ asset: CryptoAsset) {
+        if let index = dashboard?.assets.firstIndex(where: { (a) -> Bool in
+            a.id == asset.id
+        }) {
+            dashboard?.assets[index] = asset
+        } else {
+            dashboard?.assets.append(asset)
         }
     }
     
-    func createNewAsset(_ asset: CryptoAsset, completion: @escaping (Error?) -> Void) {
-        updateRemoteAsset(asset) { (error) in
+    func updateRemoteAsset(_ asset: CryptoAsset, completion: @escaping (Error?) -> Void) {
+        cryptoAssetManager.updateRemoteAsset(asset) { (error) in
             if let error = error {
                 print(error)
                 completion(error)
             } else {
-                self.addLocalAsset(asset)
+                self.updateLocalAsset(asset)
                 completion(nil)
             }
         }
     }
     
-    private func getRemoteAssets(completion: @escaping ([CryptoAsset]?, Error?) -> Void) {
-        db.collection(assetsCollectionFirebaseTag).getDocuments { (query, error) in
-            if let error = error {
-                completion(nil, error)
-            } else if let query = query {
-                var assets: [CryptoAsset] = []
-                
-                query.documents.forEach { (document) in
-                    let decoder = JSONDecoder()
-                    do {
-                        var jsonData = document.data()
-                        jsonData.updateValue(document.documentID, forKey: "id")
-                        
-                        if let data = try? JSONSerialization.data(withJSONObject: jsonData) {
-                            var asset = try decoder.decode(CryptoAsset.self, from: data)
-                            asset.id = document.documentID
-                            assets.append(asset)
-                        } else {
-                            print("Can't create json data from firebase document data")
-                        }
-                    } catch {
-                        print(error)
-                    }
-                }
-                
-                completion(assets, nil)
-            } else {
-                completion(nil, nil)
-            }
-        }
-    }
-    
-    func updateDashboard(onCompleted: @escaping () -> Void) {
-        getRemoteAssets { (assets, error) in
+    func syncDashboard(onCompleted: @escaping () -> Void) {
+        cryptoAssetManager.getRemoteAssets { (assets, error) in
             if let error = error {
                 print(error)
                 self.dashboard?.assets = []
@@ -136,7 +66,7 @@ class Session: ObservableObject {
         
         dashboard = CryptoDashboard()
         
-        updateDashboard {
+        syncDashboard {
             self.initialized = true
             onCompleted()
         }
@@ -164,12 +94,7 @@ class Session: ObservableObject {
             }
             return authData
         } else {
-            let error = NSError(
-                domain: "",
-                code: 0,
-                userInfo: [
-                    NSLocalizedDescriptionKey : "Unable to restore session"
-                ])
+            let error = NSError.withLocalizedDescription("Unable to restore session")
             completion(error)
             return nil
         }
@@ -189,7 +114,7 @@ class Session: ObservableObject {
         }
     }
     
-    func handleFirebaseAuthResponse(authData: AuthData, error: Error?, completion: @escaping (Error?) -> Void) {
+    private func handleFirebaseAuthResponse(authData: AuthData, error: Error?, completion: @escaping (Error?) -> Void) {
         guard error == nil else {
             completion(error)
             return
@@ -199,12 +124,7 @@ class Session: ObservableObject {
             if self.initialized {
                 completion(nil)
             } else {
-                let error = NSError(
-                    domain: "",
-                    code: 0,
-                    userInfo: [
-                        NSLocalizedDescriptionKey : "Unable to initialize session"
-                    ])
+                let error = NSError.withLocalizedDescription("Unable to initialize session")
                 completion(error)
             }
         }

@@ -15,11 +15,6 @@ struct MainTabView: View {
                     Label("Cryptos", systemImage: "cube")
                 }
             
-            PlatformsListView()
-                .tabItem {
-                    Label("Platforms", systemImage: "network")
-                }
-            
             MapView()
                 .tabItem {
                     Label("Map", systemImage: "map")
