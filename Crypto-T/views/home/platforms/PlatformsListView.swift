@@ -15,8 +15,8 @@ struct PlatformsListView: View {
     
     var body: some View {
         NavigationView {
-            if let platforms = session.dashboard?.platforms {
-                ScrollView {
+            ScrollView {
+                if let platforms = session.dashboard?.platforms {
                     LazyVStack {
                         ForEach(platforms) { platform in
                             PlatformCellView(platform: platform)
@@ -24,13 +24,22 @@ struct PlatformsListView: View {
                         }
                     }
                     .padding()
+                } else {
+                    Text("There is no platforms")
+                        .multilineTextAlignment(.center)
+                        .padding()
+                        .navigationBarTitle(title)
                 }
-                .navigationBarTitle(title)
-            } else {
-                Text("There is no platforms avaliable right now")
-                    .multilineTextAlignment(.center)
-                    .padding()
-                    .navigationBarTitle(title)
+            }
+            .navigationBarTitle(title)
+            .toolbar {
+                ToolbarItem(placement: .navigationBarTrailing) {
+                    Button {
+                        print("Tapped plus!")
+                    } label: {
+                        Image(systemName: "plus")
+                    }
+                }
             }
         }
     }
