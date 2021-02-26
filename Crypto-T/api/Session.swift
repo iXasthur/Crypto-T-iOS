@@ -114,7 +114,7 @@ class Session: ObservableObject {
         }
     }
     
-    func updateDashboard() {
+    func updateDashboard(onCompleted: @escaping () -> Void) {
         getRemoteAssets { (assets, error) in
             if let error = error {
                 print(error)
@@ -125,19 +125,22 @@ class Session: ObservableObject {
                 print("Didn't receive assets and error")
                 self.dashboard?.assets = []
             }
+            onCompleted()
         }
     }
     
-    private func initialize(_ authData: AuthData) -> Bool {
+    private func initialize(_ authData: AuthData, onCompleted: @escaping () -> Void) {
         self.authData = authData
         
         AuthDataStorage.saveToKeychain(authData)
         
         dashboard = CryptoDashboard()
-        updateDashboard()
         
-        initialized = true
-        return initialized
+        updateDashboard {
+            self.initialized = true
+            onCompleted()
+        }
+        
     }
     
     func destroy() {
@@ -191,16 +194,19 @@ class Session: ObservableObject {
             completion(error)
             return
         }
-        if self.initialize(authData) {
-            completion(nil)
-        } else {
-            let error = NSError(
-                domain: "",
-                code: 0,
-                userInfo: [
-                    NSLocalizedDescriptionKey : "Unable to initialize session"
-                ])
-            completion(error)
+        
+        initialize(authData) {
+            if self.initialized {
+                completion(nil)
+            } else {
+                let error = NSError(
+                    domain: "",
+                    code: 0,
+                    userInfo: [
+                        NSLocalizedDescriptionKey : "Unable to initialize session"
+                    ])
+                completion(error)
+            }
         }
     }
 }
