@@ -11,7 +11,6 @@ struct SettingsView: View {
     
     @EnvironmentObject var session: Session
     
-    
     var body: some View {
         NavigationView {
             Form {

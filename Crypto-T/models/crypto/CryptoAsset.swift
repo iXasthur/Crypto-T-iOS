@@ -8,12 +8,12 @@
 import Foundation
 
 
-struct CryptoAsset: Codable {
-    var id: String
-    var providerProfileId: String // id
+struct CryptoAsset: Codable, Identifiable {
+    var id: String = UUID().uuidString
+     
     var name: String // Bitcoin
     var code: String // BTC
-    var description: String // ...
-    var iconURL: String // url
-    var promoVideoURL: String // url
+    var description: String? // ...
+    var iconURL: String? // url
+    var promoVideoURL: String? // url
 }

@@ -9,5 +9,6 @@ import Foundation
 
 
 struct CryptoDashboard {
-    var networks: [CryptoNetwork] = []
+    var platforms: [CryptoPlatform] = []
+    var coins: [CryptoAsset] = []
 }
