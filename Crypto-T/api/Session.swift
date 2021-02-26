@@ -32,7 +32,7 @@ class Session: ObservableObject {
         dashboard?.assets.append(asset)
     }
     
-    private func addRemoteAsset(_ asset: CryptoAsset, completion: @escaping (Error?) -> Void) {
+    private func updateRemoteAsset(_ asset: CryptoAsset, completion: @escaping (Error?) -> Void) {
         let encoder = JSONEncoder()
         
         do {
@@ -71,7 +71,7 @@ class Session: ObservableObject {
     }
     
     func createNewAsset(_ asset: CryptoAsset, completion: @escaping (Error?) -> Void) {
-        addRemoteAsset(asset) { (error) in
+        updateRemoteAsset(asset) { (error) in
             if let error = error {
                 print(error)
                 completion(error)
