@@ -36,6 +36,8 @@ struct CryptoCreatorView: View {
     @State var iconUiImage: UIImage? = nil
     @State var videoNsUrl: NSURL? = nil
     
+    private let videoPlayer: AVPlayer = AVPlayer()
+    
     func validateNewAsset() -> Bool {
         if (
             name.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty ||
@@ -121,10 +123,19 @@ struct CryptoCreatorView: View {
                         }
                         
                         if let url = videoNsUrl?.absoluteURL {
-                            VideoPlayer(player: AVPlayer(url: url))
+                            let playerItem: AVPlayerItem = AVPlayerItem(url: url)
+                            
+                            VideoPlayer(player: videoPlayer)
                                 .aspectRatio(16.0/9.0, contentMode: .fit)
+                                .onAppear {
+                                    videoPlayer.replaceCurrentItem(with: playerItem)
+                                }
+                                .id(UUID()) // Forces to call onAppear()
                             
                             Button {
+                                videoPlayer.pause()
+                                videoPlayer.replaceCurrentItem(with: nil)
+                                
                                 withAnimation {
                                     videoNsUrl = nil
                                 }
