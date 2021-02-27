@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import AVKit
 
 
 enum CryptoCreatorViewSheet: Identifiable {
@@ -84,9 +85,10 @@ struct CryptoCreatorView: View {
                                     Image(uiImage: iconUiImage)
                                         .resizable()
                                         .aspectRatio(contentMode: .fill)
-                                        .frame(width: 30, height: 30)
+                                        .frame(width: 60, height: 60)
                                         .clipShape(Circle())
                                         .overlay(Circle().stroke(Color.secondary, lineWidth: 2))
+                                        .padding(.all, 10)
                                 }
                             }
                         }
@@ -115,10 +117,23 @@ struct CryptoCreatorView: View {
                             HStack {
                                 Text("Select")
                                 Spacer()
-                                
-                                if let videoNsUrl = videoNsUrl {
-                                    Text(videoNsUrl.absoluteString!)
+                            }
+                        }
+                        
+                        if let url = videoNsUrl?.absoluteURL {
+                            VideoPlayer(player: AVPlayer(url: url))
+                                .aspectRatio(16.0/9.0, contentMode: .fit)
+                            
+                            Button {
+                                withAnimation {
+                                    videoNsUrl = nil
                                 }
+                            } label: {
+                                HStack {
+                                    Text("Remove")
+                                    Spacer()
+                                }
+                                .foregroundColor(.red)
                             }
                         }
                     }
