@@ -70,7 +70,7 @@ struct CryptoCreatorView: View {
                             showImagePicker.toggle()
                         } label: {
                             HStack {
-                                Text("Select icon")
+                                Text("Select")
                                 Spacer()
                                 
                                 if let iconUiImage = iconUiImage {
@@ -81,6 +81,20 @@ struct CryptoCreatorView: View {
                                         .clipShape(Circle())
                                         .overlay(Circle().stroke(Color.secondary, lineWidth: 2))
                                 }
+                            }
+                        }
+                        
+                        if iconUiImage != nil {
+                            Button {
+                                withAnimation {
+                                    iconUiImage = nil
+                                }
+                            } label: {
+                                HStack {
+                                    Text("Remove")
+                                    Spacer()
+                                }
+                                .foregroundColor(.red)
                             }
                         }
                     }
