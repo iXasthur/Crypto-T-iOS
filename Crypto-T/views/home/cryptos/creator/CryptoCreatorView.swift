@@ -64,7 +64,7 @@ struct CryptoCreatorView: View {
                     }
                     
                     Section(
-                        header: Text("EXTRA")
+                        header: Text("ICON")
                     ) {
                         Button {
                             showImagePicker.toggle()
@@ -83,14 +83,11 @@ struct CryptoCreatorView: View {
                                 }
                             }
                         }
-                        
-                        Text("Icon")
-                        Text("Video")
                     }
                 }
                 .navigationBarTitle(title, displayMode: .inline)
                 .sheet(isPresented: $showImagePicker, content: {
-                    SUImagePickerView(cropToSquare: true, sourceType: .photoLibrary, uiImage: $iconUiImage, isPresented: $showImagePicker)
+                    ImagePickerView(cropToSquare: true, uiImage: $iconUiImage, isPresented: $showImagePicker)
                 })
                 .toolbar {
                     ToolbarItem(placement: .cancellationAction) {

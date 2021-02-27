@@ -1,6 +1,6 @@
 //
-//  SUImagePickerView.swift
-//  SUImagePickerView
+//  ImagePickerView.swift
+//  ImagePickerView
 //
 //  Created by Karthick Selvaraj on 02/05/20.
 //  Copyright © 2020 Karthick Selvaraj. All rights reserved.
@@ -10,10 +10,10 @@ import SwiftUI
 import UIKit
 
 
-struct SUImagePickerView: UIViewControllerRepresentable {
+struct ImagePickerView: UIViewControllerRepresentable {
     
     var cropToSquare: Bool = false
-    var sourceType: UIImagePickerController.SourceType = .photoLibrary
+    
     @Binding var uiImage: UIImage?
     @Binding var isPresented: Bool
     
@@ -23,8 +23,9 @@ struct SUImagePickerView: UIViewControllerRepresentable {
     
     func makeUIViewController(context: Context) -> UIImagePickerController {
         let pickerController = UIImagePickerController()
-        pickerController.sourceType = sourceType
+        pickerController.sourceType = .photoLibrary
         pickerController.delegate = context.coordinator
+        pickerController.mediaTypes = ["public.image"]
         return pickerController
     }
 
@@ -37,6 +38,7 @@ struct SUImagePickerView: UIViewControllerRepresentable {
 class ImagePickerViewCoordinator: NSObject, UINavigationControllerDelegate, UIImagePickerControllerDelegate {
     
     let cropToSquare: Bool
+    
     @Binding var uiImage: UIImage?
     @Binding var isPresented: Bool
     
