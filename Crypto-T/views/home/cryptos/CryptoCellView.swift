@@ -27,7 +27,8 @@ struct CryptoCellView: View {
                 destination: CryptoDetailsView(asset: asset)
             ) {
                 HStack {
-                    if let iconURLString = asset.iconURL, let iconURL = URL(string: iconURLString) {
+                    if let iconURLString = asset.iconImageData?.downloadURL,
+                       let iconURL = URL(string: iconURLString) {
                         URLImage(url: iconURL,
                                  empty: {
                                     placeholderIcon

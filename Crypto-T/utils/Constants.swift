@@ -10,6 +10,9 @@ import SwiftUI
 
 struct Constants {
     
+    static let assetsCollectionFirebaseName = "assets"
+    static let iconsFolderFirebaseName = "icons"
+    
     static let uiCornerRadius: CGFloat = 15
     
 }

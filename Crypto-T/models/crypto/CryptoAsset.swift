@@ -6,14 +6,14 @@
 //
 
 import Foundation
+import Firebase
 
 
 struct CryptoAsset: Codable, Identifiable {
-    var id: String = UUID().uuidString
-    
+    var id: String
     var name: String // Bitcoin
     var code: String // BTC
     var description: String // ...
-    var iconURL: String? // url
-    var promoVideoURL: String? // url
+    
+    var iconImageData: ImageData?
 }

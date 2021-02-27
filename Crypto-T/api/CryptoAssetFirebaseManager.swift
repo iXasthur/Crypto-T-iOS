@@ -11,20 +11,28 @@ import Firebase
 
 class CryptoAssetFirebaseManager {
     
-    let assetsCollectionFirebaseTag = "assets"
-    
     let db = Firebase.Firestore.firestore()
     let storage = Storage.storage()
     
     let encoder = JSONEncoder()
     let decoder = JSONDecoder()
     
-    private func uploadImage(_ image: UIImage, completion: @escaping (URL?, Error?) -> Void) {
+    
+    private func getStorageDownloadURL(path: String, completion: @escaping (URL?, Error?) -> Void) {
+        let storageRef = storage.reference()
+        let fileRef = storageRef.child(path)
+        fileRef.downloadURL { (url, error) in
+            completion(url, error)
+        }
+    }
+    
+    private func uploadImage(_ image: UIImage, completion: @escaping (ImageData?, Error?) -> Void) {
         let image = image.resizeImage(128, opaque: true)
         
         if let data = image.jpegData(compressionQuality: 1) {
             let storageRef = storage.reference()
-            let imageRef = storageRef.child("\(UUID().uuidString).jpeg")
+            let path = "\(Constants.iconsFolderFirebaseName)/\(UUID().uuidString).jpeg"
+            let imageRef = storageRef.child(path)
             
             let metadata = StorageMetadata()
             metadata.contentType = "image/jpeg"
@@ -33,11 +41,13 @@ class CryptoAssetFirebaseManager {
                 if let error = error {
                     completion(nil, error)
                 } else {
-                    imageRef.downloadURL { (url, error) in
-                        if let downloadURL = url {
-                            completion(downloadURL, nil)
+                    self.getStorageDownloadURL(path: path) { (url, error) in
+                        if let error = error {
+                            completion(nil, error)
+                        } else if let url = url {
+                            completion(ImageData(path: path, downloadURL: url.absoluteString), nil)
                         } else {
-                            completion(nil, NSError.withLocalizedDescription("Unable to get image download url"))
+                            completion(nil, nil)
                         }
                     }
                 }
@@ -54,7 +64,7 @@ class CryptoAssetFirebaseManager {
             if var json = try? JSONSerialization.jsonObject(with: data, options: []) as? [String: Any] {
                 json.removeValue(forKey: "id")
                 
-                let document = db.collection(assetsCollectionFirebaseTag).document(asset.id)
+                let document = db.collection(Constants.assetsCollectionFirebaseName).document(asset.id)
                 document.setData(json) { error in
                     if let error = error {
                         print("Error writing document: \(error)")
@@ -76,12 +86,12 @@ class CryptoAssetFirebaseManager {
     
     func updateRemoteAsset(_ asset: CryptoAsset, _ image: UIImage?, completion: @escaping (CryptoAsset?, Error?) -> Void) {
         if let image = image {
-            uploadImage(image) { (url, error) in
+            uploadImage(image) { (imageData, error) in
                 if let error = error {
                     completion(nil, error)
-                } else if let url = url {
+                } else if let imageData = imageData {
                     var updatedAsset = asset
-                    updatedAsset.iconURL = url.absoluteString
+                    updatedAsset.iconImageData = imageData
                     
                     self.uploadAsset(updatedAsset) { (error) in
                         if let error = error {
@@ -106,7 +116,7 @@ class CryptoAssetFirebaseManager {
     }
     
     func getRemoteAssets(completion: @escaping ([CryptoAsset]?, Error?) -> Void) {
-        db.collection(assetsCollectionFirebaseTag).getDocuments { (query, error) in
+        db.collection(Constants.assetsCollectionFirebaseName).getDocuments { (query, error) in
             if let error = error {
                 completion(nil, error)
             } else if let query = query {

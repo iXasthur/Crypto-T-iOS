@@ -101,7 +101,7 @@ struct CryptoCreatorView: View {
                     
                     ToolbarItem(placement: .confirmationAction) {
                         Button("Save") {
-                            let asset = CryptoAsset(name: name, code: code, description: description)
+                            let asset = CryptoAsset(id: UUID().uuidString, name: name, code: code, description: description)
                             
                             withAnimation {
                                 progress = true

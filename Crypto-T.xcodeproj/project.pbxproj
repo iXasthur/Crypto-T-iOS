@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		CABA5109E1C197CBDA7BC860 /* Pods_Crypto_T.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 88279398B42EB9E253645E3E /* Pods_Crypto_T.framework */; };
+		D00793FF25EAEE39000811D6 /* ImageData.swift in Sources */ = {isa = PBXBuildFile; fileRef = D00793FE25EAEE39000811D6 /* ImageData.swift */; };
 		D013C84D25EAC648003ED852 /* UIImageExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = D013C84C25EAC648003ED852 /* UIImageExtensions.swift */; };
 		D017124A25E9434E00AC1560 /* CryptosListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D017124925E9434E00AC1560 /* CryptosListView.swift */; };
 		D017124D25E9436300AC1560 /* CryptoCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D017124C25E9436300AC1560 /* CryptoCellView.swift */; };
@@ -40,6 +41,7 @@
 		35BC58E3D493C238B5D539C0 /* Pods-Crypto-T.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Crypto-T.release.xcconfig"; path = "Target Support Files/Pods-Crypto-T/Pods-Crypto-T.release.xcconfig"; sourceTree = "<group>"; };
 		4E1D6874315813DC65A94ACC /* Pods-Crypto-T.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Crypto-T.debug.xcconfig"; path = "Target Support Files/Pods-Crypto-T/Pods-Crypto-T.debug.xcconfig"; sourceTree = "<group>"; };
 		88279398B42EB9E253645E3E /* Pods_Crypto_T.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Crypto_T.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		D00793FE25EAEE39000811D6 /* ImageData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageData.swift; sourceTree = "<group>"; };
 		D013C84C25EAC648003ED852 /* UIImageExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIImageExtensions.swift; sourceTree = "<group>"; };
 		D017124925E9434E00AC1560 /* CryptosListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CryptosListView.swift; sourceTree = "<group>"; };
 		D017124C25E9436300AC1560 /* CryptoCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CryptoCellView.swift; sourceTree = "<group>"; };
@@ -200,6 +202,7 @@
 		D0E24FCC25E6AC5D000B5C8F /* crypto */ = {
 			isa = PBXGroup;
 			children = (
+				D00793FE25EAEE39000811D6 /* ImageData.swift */,
 				D03068D525E55D8A001E2707 /* CryptoAsset.swift */,
 				D03068D225E554AD001E2707 /* CryptoDashboard.swift */,
 			);
@@ -400,6 +403,7 @@
 				D017124D25E9436300AC1560 /* CryptoCellView.swift in Sources */,
 				D0E24FD325E6ACCE000B5C8F /* Session.swift in Sources */,
 				D03068CD25E54B8F001E2707 /* MainTabView.swift in Sources */,
+				D00793FF25EAEE39000811D6 /* ImageData.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
