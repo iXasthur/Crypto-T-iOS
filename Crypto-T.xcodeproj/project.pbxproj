@@ -101,6 +101,14 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		D007940325EAF1BE000811D6 /* utils */ = {
+			isa = PBXGroup;
+			children = (
+				D00793FE25EAEE39000811D6 /* CloudFileData.swift */,
+			);
+			path = utils;
+			sourceTree = "<group>";
+		};
 		D017124725E9429D00AC1560 /* cryptos */ = {
 			isa = PBXGroup;
 			children = (
@@ -202,7 +210,6 @@
 		D0E24FCC25E6AC5D000B5C8F /* crypto */ = {
 			isa = PBXGroup;
 			children = (
-				D00793FE25EAEE39000811D6 /* CloudFileData.swift */,
 				D03068D525E55D8A001E2707 /* CryptoAsset.swift */,
 				D03068D225E554AD001E2707 /* CryptoDashboard.swift */,
 			);
@@ -249,6 +256,7 @@
 		D0F9871725E528480094BBB2 /* models */ = {
 			isa = PBXGroup;
 			children = (
+				D007940325EAF1BE000811D6 /* utils */,
 				D0E24FCC25E6AC5D000B5C8F /* crypto */,
 				D0E24FCF25E6AC8F000B5C8F /* settings */,
 				D0E24FCE25E6AC8A000B5C8F /* auth */,
