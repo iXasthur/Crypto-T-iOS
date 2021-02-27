@@ -18,7 +18,7 @@ class CryptoAssetFirebaseManager {
     let decoder = JSONDecoder()
     
     
-    func getStorageDownloadURL(path: String, completion: @escaping (URL?, Error?) -> Void) {
+    private func getStorageDownloadURL(path: String, completion: @escaping (URL?, Error?) -> Void) {
         let storageRef = storage.reference()
         let fileRef = storageRef.child(path)
         fileRef.downloadURL { (url, error) in
