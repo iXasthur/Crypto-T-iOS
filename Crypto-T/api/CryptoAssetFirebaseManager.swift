@@ -18,7 +18,7 @@ class CryptoAssetFirebaseManager {
     let decoder = JSONDecoder()
     
     
-    private func getStorageDownloadURL(path: String, completion: @escaping (URL?, Error?) -> Void) {
+    func getStorageDownloadURL(path: String, completion: @escaping (URL?, Error?) -> Void) {
         let storageRef = storage.reference()
         let fileRef = storageRef.child(path)
         fileRef.downloadURL { (url, error) in
@@ -26,7 +26,7 @@ class CryptoAssetFirebaseManager {
         }
     }
     
-    private func uploadImage(_ image: UIImage, completion: @escaping (ImageData?, Error?) -> Void) {
+    private func uploadImage(_ image: UIImage, completion: @escaping (CloudFileData?, Error?) -> Void) {
         let image = image.resizeImage(128, opaque: true)
         
         if let data = image.jpegData(compressionQuality: 1) {
@@ -45,7 +45,7 @@ class CryptoAssetFirebaseManager {
                         if let error = error {
                             completion(nil, error)
                         } else if let url = url {
-                            completion(ImageData(path: path, downloadURL: url.absoluteString), nil)
+                            completion(CloudFileData(path: path, downloadURL: url.absoluteString), nil)
                         } else {
                             completion(nil, nil)
                         }

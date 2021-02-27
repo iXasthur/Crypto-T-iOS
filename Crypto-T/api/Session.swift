@@ -57,7 +57,7 @@ class Session: ObservableObject {
             } else {
                 print("Didn't receive assets and error")
                 self.dashboard?.assets = []
-            }
+            }            
             onCompleted()
         }
     }
