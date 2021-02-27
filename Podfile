@@ -13,5 +13,5 @@ target 'Crypto-T' do
   pod 'Firebase/Storage'
 
   pod 'SwiftKeychainWrapper'
-  pod 'ObjectMapper'
+  pod 'URLImage'
 end

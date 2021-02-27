@@ -61,17 +61,10 @@ struct CryptoCreatorView: View {
                     }
                     
                     Section(
-                        header: Text("MEDIA")
+                        header: Text("EXTRA")
                     ) {
                         Text("Icon")
                         Text("Video")
-                    }
-                    
-                    Section(
-                        header: Text("EVENTS")
-                    ) {
-                        Text("Note")
-                        Text("Location")
                     }
                 }
                 .navigationBarTitle(title, displayMode: .inline)
