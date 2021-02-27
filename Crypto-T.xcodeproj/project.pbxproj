@@ -256,10 +256,10 @@
 		D0F9871725E528480094BBB2 /* models */ = {
 			isa = PBXGroup;
 			children = (
-				D007940325EAF1BE000811D6 /* utils */,
 				D0E24FCC25E6AC5D000B5C8F /* crypto */,
 				D0E24FCF25E6AC8F000B5C8F /* settings */,
 				D0E24FCE25E6AC8A000B5C8F /* auth */,
+				D007940325EAF1BE000811D6 /* utils */,
 			);
 			path = models;
 			sourceTree = "<group>";
