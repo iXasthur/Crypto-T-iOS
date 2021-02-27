@@ -12,11 +12,12 @@ import UIKit
 
 struct VideoPickerView: UIViewControllerRepresentable {
     
+    @Environment(\.presentationMode) var presentationMode
+    
     @Binding var videoNSURL: NSURL?
-    @Binding var isPresented: Bool
     
     func makeCoordinator() -> VideoPickerViewCoordinator {
-        return VideoPickerViewCoordinator(videoNSURL: $videoNSURL, isPresented: $isPresented)
+        return VideoPickerViewCoordinator(videoNSURL: $videoNSURL, presentationMode: presentationMode)
     }
     
     func makeUIViewController(context: Context) -> UIImagePickerController {
@@ -35,23 +36,23 @@ struct VideoPickerView: UIViewControllerRepresentable {
 
 class VideoPickerViewCoordinator: NSObject, UINavigationControllerDelegate, UIImagePickerControllerDelegate {
     
+    @Binding var presentationMode: PresentationMode
     @Binding var videoNSURL: NSURL?
-    @Binding var isPresented: Bool
     
-    init(videoNSURL: Binding<NSURL?>, isPresented: Binding<Bool>) {
+    init(videoNSURL: Binding<NSURL?>, presentationMode: Binding<PresentationMode>) {
+        self._presentationMode = presentationMode
         self._videoNSURL = videoNSURL
-        self._isPresented = isPresented
     }
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         if let videoNSURL = info[UIImagePickerController.InfoKey.mediaURL] as? NSURL {
             self.videoNSURL = videoNSURL
         }
-        self.isPresented = false
+        $presentationMode.wrappedValue.dismiss()
     }
     
     func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
-        self.isPresented = false
+        $presentationMode.wrappedValue.dismiss()
     }
     
 }

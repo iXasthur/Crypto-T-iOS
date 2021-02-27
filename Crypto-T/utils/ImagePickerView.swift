@@ -14,11 +14,12 @@ struct ImagePickerView: UIViewControllerRepresentable {
     
     var cropToSquare: Bool = false
     
+    @Environment(\.presentationMode) var presentationMode
+    
     @Binding var uiImage: UIImage?
-    @Binding var isPresented: Bool
     
     func makeCoordinator() -> ImagePickerViewCoordinator {
-        return ImagePickerViewCoordinator(cropToSquare: cropToSquare, uiImage: $uiImage, isPresented: $isPresented)
+        return ImagePickerViewCoordinator(cropToSquare: cropToSquare, uiImage: $uiImage, presentationMode: presentationMode)
     }
     
     func makeUIViewController(context: Context) -> UIImagePickerController {
@@ -39,13 +40,13 @@ class ImagePickerViewCoordinator: NSObject, UINavigationControllerDelegate, UIIm
     
     let cropToSquare: Bool
     
+    @Binding var presentationMode: PresentationMode
     @Binding var uiImage: UIImage?
-    @Binding var isPresented: Bool
     
-    init(cropToSquare: Bool, uiImage: Binding<UIImage?>, isPresented: Binding<Bool>) {
+    init(cropToSquare: Bool, uiImage: Binding<UIImage?>, presentationMode: Binding<PresentationMode>) {
         self.cropToSquare = cropToSquare
+        self._presentationMode = presentationMode
         self._uiImage = uiImage
-        self._isPresented = isPresented
     }
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
@@ -60,11 +61,12 @@ class ImagePickerViewCoordinator: NSObject, UINavigationControllerDelegate, UIIm
                 self.uiImage = uiImage
             }
         }
-        self.isPresented = false
+        
+        $presentationMode.wrappedValue.dismiss()
     }
     
     func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
-        self.isPresented = false
+        $presentationMode.wrappedValue.dismiss()
     }
     
 }

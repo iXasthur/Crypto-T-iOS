@@ -7,6 +7,15 @@
 
 import SwiftUI
 
+
+enum CryptoCreatorViewSheet: Identifiable {
+    case image, video
+    
+    var id: Int {
+        hashValue
+    }
+}
+
 struct CryptoCreatorView: View {
     
     let title = "New crypto"
@@ -16,17 +25,15 @@ struct CryptoCreatorView: View {
     
     @Binding var isPresented: Bool
     
+    @State var activeSheet: CryptoCreatorViewSheet? = nil
+    
     @State var progress: Bool = false
     
     @State var name: String = ""
     @State var code: String = ""
     @State var description: String = ""
-    
-    @State var showImagePicker: Bool = false
     @State var iconUiImage: UIImage? = nil
-    
-    var iconURL: String? = nil
-    var promoVideoURL: String? = nil
+    @State var videoNsUrl: NSURL? = nil
     
     func validateNewAsset() -> Bool {
         if (
@@ -67,7 +74,7 @@ struct CryptoCreatorView: View {
                         header: Text("ICON")
                     ) {
                         Button {
-                            showImagePicker.toggle()
+                            activeSheet = .image
                         } label: {
                             HStack {
                                 Text("Select")
@@ -98,11 +105,33 @@ struct CryptoCreatorView: View {
                             }
                         }
                     }
+                    
+                    Section(
+                        header: Text("VIDEO")
+                    ) {
+                        Button {
+                            activeSheet = .video
+                        } label: {
+                            HStack {
+                                Text("Select")
+                                Spacer()
+                                
+                                if let videoNsUrl = videoNsUrl {
+                                    Text(videoNsUrl.absoluteString!)
+                                }
+                            }
+                        }
+                    }
                 }
                 .navigationBarTitle(title, displayMode: .inline)
-                .sheet(isPresented: $showImagePicker, content: {
-                    ImagePickerView(cropToSquare: true, uiImage: $iconUiImage, isPresented: $showImagePicker)
-                })
+                .sheet(item: $activeSheet) { item in
+                    switch item {
+                    case .image:
+                        ImagePickerView(cropToSquare: true, uiImage: $iconUiImage)
+                    case .video:
+                        VideoPickerView(videoNSURL: $videoNsUrl)
+                    }
+                }
                 .toolbar {
                     ToolbarItem(placement: .cancellationAction) {
                         Button("Back") {
