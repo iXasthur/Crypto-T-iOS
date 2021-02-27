@@ -14,11 +14,41 @@ class CryptoAssetFirebaseManager {
     let assetsCollectionFirebaseTag = "assets"
     
     let db = Firebase.Firestore.firestore()
+    let storage = Storage.storage()
     
     let encoder = JSONEncoder()
     let decoder = JSONDecoder()
     
-    func updateRemoteAsset(_ asset: CryptoAsset, completion: @escaping (Error?) -> Void) {
+    private func uploadImage(_ image: UIImage, completion: @escaping (URL?, Error?) -> Void) {
+        let image = image.resizeImage(128, opaque: true)
+        
+        if let data = image.jpegData(compressionQuality: 1) {
+            let storageRef = storage.reference()
+            let imageRef = storageRef.child("\(UUID().uuidString).jpeg")
+            
+            let metadata = StorageMetadata()
+            metadata.contentType = "image/jpeg"
+            
+            imageRef.putData(data, metadata: metadata) { (_, error) in
+                if let error = error {
+                    completion(nil, error)
+                } else {
+                    imageRef.downloadURL { (url, error) in
+                        if let downloadURL = url {
+                            completion(downloadURL, nil)
+                        } else {
+                            completion(nil, NSError.withLocalizedDescription("Unable to get image download url"))
+                        }
+                    }
+                }
+            }
+            
+        } else {
+            completion(nil, NSError.withLocalizedDescription("Unable to get png data from image"))
+        }
+    }
+    
+    private func uploadAsset(_ asset: CryptoAsset, completion: @escaping (Error?) -> Void) {
         do {
             let data = try encoder.encode(asset)
             if var json = try? JSONSerialization.jsonObject(with: data, options: []) as? [String: Any] {
@@ -41,6 +71,37 @@ class CryptoAssetFirebaseManager {
         } catch {
             let error = NSError.withLocalizedDescription("Unable to encode crypto asset")
             completion(error)
+        }
+    }
+    
+    func updateRemoteAsset(_ asset: CryptoAsset, _ image: UIImage?, completion: @escaping (CryptoAsset?, Error?) -> Void) {
+        if let image = image {
+            uploadImage(image) { (url, error) in
+                if let error = error {
+                    completion(nil, error)
+                } else if let url = url {
+                    var updatedAsset = asset
+                    updatedAsset.iconURL = url.absoluteString
+                    
+                    self.uploadAsset(updatedAsset) { (error) in
+                        if let error = error {
+                            completion(nil, error)
+                        } else {
+                            completion(updatedAsset, nil)
+                        }
+                    }
+                } else {
+                    completion(nil, nil)
+                }
+            }
+        } else {
+            uploadAsset(asset) { (error) in
+                if let error = error {
+                    completion(nil, error)
+                } else {
+                    completion(asset, nil)
+                }
+            }
         }
     }
     

@@ -32,14 +32,17 @@ class Session: ObservableObject {
         }
     }
     
-    func updateRemoteAsset(_ asset: CryptoAsset, completion: @escaping (Error?) -> Void) {
-        cryptoAssetManager.updateRemoteAsset(asset) { (error) in
+    func updateRemoteAsset(asset: CryptoAsset, image: UIImage?, completion: @escaping (Error?) -> Void) {
+        cryptoAssetManager.updateRemoteAsset(asset, image) { (updatedAsset, error) in
             if let error = error {
                 print(error)
                 completion(error)
-            } else {
-                self.updateLocalAsset(asset)
+            } else if let updatedAsset = updatedAsset {
+                self.updateLocalAsset(updatedAsset)
                 completion(nil)
+            } else {
+                let error = NSError.withLocalizedDescription("Invalid updateRemoteAsset form CryptoAssetFirebaseManager closure return")
+                completion(error)
             }
         }
     }

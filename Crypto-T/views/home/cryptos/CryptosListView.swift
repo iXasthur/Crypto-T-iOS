@@ -22,7 +22,7 @@ struct CryptosListView: View {
                     LazyVStack {
                         ForEach(assets) { asset in
                             CryptoCellView(asset: asset)
-                                .padding(.vertical)
+                                .padding(.top)
                         }
                     }
                     .padding()

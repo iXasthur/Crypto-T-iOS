@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		CABA5109E1C197CBDA7BC860 /* Pods_Crypto_T.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 88279398B42EB9E253645E3E /* Pods_Crypto_T.framework */; };
+		D013C84D25EAC648003ED852 /* UIImageExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = D013C84C25EAC648003ED852 /* UIImageExtensions.swift */; };
 		D017124A25E9434E00AC1560 /* CryptosListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D017124925E9434E00AC1560 /* CryptosListView.swift */; };
 		D017124D25E9436300AC1560 /* CryptoCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D017124C25E9436300AC1560 /* CryptoCellView.swift */; };
 		D01B79D325E9463200B01FC3 /* CryptoCreatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D01B79D225E9463200B01FC3 /* CryptoCreatorView.swift */; };
@@ -39,6 +40,7 @@
 		35BC58E3D493C238B5D539C0 /* Pods-Crypto-T.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Crypto-T.release.xcconfig"; path = "Target Support Files/Pods-Crypto-T/Pods-Crypto-T.release.xcconfig"; sourceTree = "<group>"; };
 		4E1D6874315813DC65A94ACC /* Pods-Crypto-T.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Crypto-T.debug.xcconfig"; path = "Target Support Files/Pods-Crypto-T/Pods-Crypto-T.debug.xcconfig"; sourceTree = "<group>"; };
 		88279398B42EB9E253645E3E /* Pods_Crypto_T.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Crypto_T.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		D013C84C25EAC648003ED852 /* UIImageExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIImageExtensions.swift; sourceTree = "<group>"; };
 		D017124925E9434E00AC1560 /* CryptosListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CryptosListView.swift; sourceTree = "<group>"; };
 		D017124C25E9436300AC1560 /* CryptoCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CryptoCellView.swift; sourceTree = "<group>"; };
 		D01B79D225E9463200B01FC3 /* CryptoCreatorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CryptoCreatorView.swift; sourceTree = "<group>"; };
@@ -227,6 +229,7 @@
 				D0FF2A3A25E6F920004043CF /* AuthDataStorage.swift */,
 				D03CA19825E98B7700A0D1F1 /* NSErrorExtension.swift */,
 				D0369B1B25E6BB1D00DAAFA3 /* Constants.swift */,
+				D013C84C25EAC648003ED852 /* UIImageExtensions.swift */,
 			);
 			path = utils;
 			sourceTree = "<group>";
@@ -381,6 +384,7 @@
 				D03CA19625E9897A00A0D1F1 /* CryptoAssetFirebaseManager.swift in Sources */,
 				D0792C5325E5234A00E5102C /* CryptoTApp.swift in Sources */,
 				D03CA19F25E994A200A0D1F1 /* SUIImagePickerView.swift in Sources */,
+				D013C84D25EAC648003ED852 /* UIImageExtensions.swift in Sources */,
 				D0369B1C25E6BB1D00DAAFA3 /* Constants.swift in Sources */,
 				D03068D625E55D8A001E2707 /* CryptoAsset.swift in Sources */,
 				D0F4CC7D25E6B87D00C77DFE /* AuthUniversalView.swift in Sources */,

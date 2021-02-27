@@ -12,12 +12,13 @@ import UIKit
 
 struct SUImagePickerView: UIViewControllerRepresentable {
     
+    var cropToSquare: Bool = false
     var sourceType: UIImagePickerController.SourceType = .photoLibrary
-    @Binding var image: Image?
+    @Binding var uiImage: UIImage?
     @Binding var isPresented: Bool
     
     func makeCoordinator() -> ImagePickerViewCoordinator {
-        return ImagePickerViewCoordinator(image: $image, isPresented: $isPresented)
+        return ImagePickerViewCoordinator(cropToSquare: cropToSquare, uiImage: $uiImage, isPresented: $isPresented)
     }
     
     func makeUIViewController(context: Context) -> UIImagePickerController {
@@ -35,17 +36,27 @@ struct SUImagePickerView: UIViewControllerRepresentable {
 
 class ImagePickerViewCoordinator: NSObject, UINavigationControllerDelegate, UIImagePickerControllerDelegate {
     
-    @Binding var image: Image?
+    let cropToSquare: Bool
+    @Binding var uiImage: UIImage?
     @Binding var isPresented: Bool
     
-    init(image: Binding<Image?>, isPresented: Binding<Bool>) {
-        self._image = image
+    init(cropToSquare: Bool, uiImage: Binding<UIImage?>, isPresented: Binding<Bool>) {
+        self.cropToSquare = cropToSquare
+        self._uiImage = uiImage
         self._isPresented = isPresented
     }
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
-        if let image = info[UIImagePickerController.InfoKey.originalImage] as? UIImage {
-            self.image = Image(uiImage: image)
+        if let uiImage = info[UIImagePickerController.InfoKey.originalImage] as? UIImage {
+            if cropToSquare {
+                if let croppedImage = uiImage.cropedToSquare() {
+                    self.uiImage = croppedImage
+                } else {
+                    self.uiImage = uiImage
+                }
+            } else {
+                self.uiImage = uiImage
+            }
         }
         self.isPresented = false
     }

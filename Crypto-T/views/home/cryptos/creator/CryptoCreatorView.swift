@@ -22,14 +22,17 @@ struct CryptoCreatorView: View {
     @State var code: String = ""
     @State var description: String = ""
     
+    @State var showImagePicker: Bool = false
+    @State var iconUiImage: UIImage? = nil
+    
     var iconURL: String? = nil
     var promoVideoURL: String? = nil
     
     func validateNewAsset() -> Bool {
         if (
             name.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty ||
-            code.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty ||
-            description.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty
+                code.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty ||
+                description.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty
         ) {
             return false
         }
@@ -63,11 +66,32 @@ struct CryptoCreatorView: View {
                     Section(
                         header: Text("EXTRA")
                     ) {
+                        Button {
+                            showImagePicker.toggle()
+                        } label: {
+                            HStack {
+                                Text("Select icon")
+                                Spacer()
+                                
+                                if let iconUiImage = iconUiImage {
+                                    Image(uiImage: iconUiImage)
+                                        .resizable()
+                                        .aspectRatio(contentMode: .fill)
+                                        .frame(width: 30, height: 30)
+                                        .clipShape(Circle())
+                                        .overlay(Circle().stroke(Color.secondary, lineWidth: 2))
+                                }
+                            }
+                        }
+                        
                         Text("Icon")
                         Text("Video")
                     }
                 }
                 .navigationBarTitle(title, displayMode: .inline)
+                .sheet(isPresented: $showImagePicker, content: {
+                    SUImagePickerView(cropToSquare: true, sourceType: .photoLibrary, uiImage: $iconUiImage, isPresented: $showImagePicker)
+                })
                 .toolbar {
                     ToolbarItem(placement: .cancellationAction) {
                         Button("Back") {
@@ -83,7 +107,7 @@ struct CryptoCreatorView: View {
                                 progress = true
                             }
                             
-                            session.updateRemoteAsset(asset) { (error) in
+                            session.updateRemoteAsset(asset: asset, image: iconUiImage) { (error) in
                                 progress = false
                                 
                                 if error == nil {

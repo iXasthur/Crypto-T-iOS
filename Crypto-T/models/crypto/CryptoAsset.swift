@@ -6,7 +6,6 @@
 //
 
 import Foundation
-import ObjectMapper
 
 
 struct CryptoAsset: Codable, Identifiable {
