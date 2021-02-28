@@ -12,14 +12,12 @@ import UIKit
 
 struct ImagePickerView: UIViewControllerRepresentable {
     
-    var cropToSquare: Bool = false
-    
     @Environment(\.presentationMode) var presentationMode
     
-    @Binding var uiImage: UIImage?
+    @Binding var imageNSURL: NSURL?
     
     func makeCoordinator() -> ImagePickerViewCoordinator {
-        return ImagePickerViewCoordinator(cropToSquare: cropToSquare, uiImage: $uiImage, presentationMode: presentationMode)
+        return ImagePickerViewCoordinator(imageNSURL: $imageNSURL, presentationMode: presentationMode)
     }
     
     func makeUIViewController(context: Context) -> UIImagePickerController {
@@ -38,30 +36,18 @@ struct ImagePickerView: UIViewControllerRepresentable {
 
 class ImagePickerViewCoordinator: NSObject, UINavigationControllerDelegate, UIImagePickerControllerDelegate {
     
-    let cropToSquare: Bool
-    
     @Binding var presentationMode: PresentationMode
-    @Binding var uiImage: UIImage?
+    @Binding var imageNSURL: NSURL?
     
-    init(cropToSquare: Bool, uiImage: Binding<UIImage?>, presentationMode: Binding<PresentationMode>) {
-        self.cropToSquare = cropToSquare
+    init(imageNSURL: Binding<NSURL?>, presentationMode: Binding<PresentationMode>) {
         self._presentationMode = presentationMode
-        self._uiImage = uiImage
+        self._imageNSURL = imageNSURL
     }
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
-        if let uiImage = info[UIImagePickerController.InfoKey.originalImage] as? UIImage {
-            if cropToSquare {
-                if let croppedImage = uiImage.cropedToSquare() {
-                    self.uiImage = croppedImage
-                } else {
-                    self.uiImage = uiImage
-                }
-            } else {
-                self.uiImage = uiImage
-            }
+        if let imageNSURL = info[UIImagePickerController.InfoKey.imageURL] as? NSURL {
+            self.imageNSURL = imageNSURL
         }
-        
         $presentationMode.wrappedValue.dismiss()
     }
     

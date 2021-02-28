@@ -45,23 +45,32 @@ class CryptoAssetFirebaseManager {
         }
     }
     
-    private func uploadImage(_ image: UIImage, completion: @escaping (CloudFileData?, Error?) -> Void) {
-        let image = image.resizeImage(128, opaque: true)
-        
-        if let data = image.jpegData(compressionQuality: 1) {
-            let storageRef = storage.reference()
-            let path = "\(Constants.imagesFolderFirebaseName)/\(UUID().uuidString).jpeg"
-            let imageRef = storageRef.child(path)
+    private func uploadImage(_ iconNSURL: NSURL, completion: @escaping (CloudFileData?, Error?) -> Void) {
+        do {
+            let url = iconNSURL as URL
+            let imageData = try Data(contentsOf: url)
             
-            let metadata = StorageMetadata()
-            metadata.contentType = "image/jpeg"
-            
-            uploadFile(fileRef: imageRef, data: data, metadata: metadata) { (fileData, error) in
-                completion(fileData, error)
+            if let image = UIImage(data: imageData)?.cropedToSquare()?.resizeImage(128, opaque: true) {
+                if let data = image.jpegData(compressionQuality: 1) {
+                    let storageRef = storage.reference()
+                    let path = "\(Constants.imagesFolderFirebaseName)/\(UUID().uuidString).jpeg"
+                    let imageRef = storageRef.child(path)
+                    
+                    let metadata = StorageMetadata()
+                    metadata.contentType = "image/jpeg"
+                    
+                    uploadFile(fileRef: imageRef, data: data, metadata: metadata) { (fileData, error) in
+                        completion(fileData, error)
+                    }
+                    
+                } else {
+                    completion(nil, NSError.withLocalizedDescription("Unable to get png data from image"))
+                }
+            } else {
+                completion(nil, NSError.withLocalizedDescription("Unable to optimize image size and form"))
             }
-            
-        } else {
-            completion(nil, NSError.withLocalizedDescription("Unable to get png data from image"))
+        } catch {
+            completion(nil, NSError.withLocalizedDescription("Unable to process image NSURL"))
         }
     }
     
@@ -122,7 +131,7 @@ class CryptoAssetFirebaseManager {
         }
     }
     
-    private func updateRemoteAssetRec(_ asset: CryptoAsset, _ image: UIImage?, _ videoNSURL: NSURL?, completion: @escaping (CryptoAsset?, Error?) -> Void) {
+    private func updateRemoteAssetRec(_ asset: CryptoAsset, _ iconNSURL: NSURL?, _ videoNSURL: NSURL?, completion: @escaping (CryptoAsset?, Error?) -> Void) {
         
         // Upload files 1 by 1 with every call
         // Priority:
@@ -140,14 +149,14 @@ class CryptoAssetFirebaseManager {
                     updatedAsset.videoFileData = fileData
                 }
                 
-                self.updateRemoteAssetRec(updatedAsset, image, nil, completion: completion)
+                self.updateRemoteAssetRec(updatedAsset, iconNSURL, nil, completion: completion)
             }
             
             return
         }
         
-        if let image = image {
-            uploadImage(image) { (fileData, error) in
+        if let iconNSURL = iconNSURL {
+            uploadImage(iconNSURL) { (fileData, error) in
                 var updatedAsset = asset
                 
                 if let error = error {
@@ -172,8 +181,8 @@ class CryptoAssetFirebaseManager {
         
     }
     
-    func updateRemoteAsset(_ asset: CryptoAsset, _ image: UIImage?, _ videoNSURL: NSURL?, completion: @escaping (CryptoAsset?, Error?) -> Void) {
-        updateRemoteAssetRec(asset, image, videoNSURL) { (updatedAssed, error) in
+    func updateRemoteAsset(_ asset: CryptoAsset, _ iconNSURL: NSURL?, _ videoNSURL: NSURL?, completion: @escaping (CryptoAsset?, Error?) -> Void) {
+        updateRemoteAssetRec(asset, iconNSURL, videoNSURL) { (updatedAssed, error) in
             completion(updatedAssed, error)
         }
     }

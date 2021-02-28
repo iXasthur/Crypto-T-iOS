@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import URLImage
 import AVKit
 
 
@@ -33,7 +34,7 @@ struct CryptoCreatorView: View {
     @State var name: String = ""
     @State var code: String = ""
     @State var description: String = ""
-    @State var iconUiImage: UIImage? = nil
+    @State var iconNsUrl: NSURL? = nil
     @State var videoNsUrl: NSURL? = nil
     
     func validateNewAsset() -> Bool {
@@ -81,22 +82,24 @@ struct CryptoCreatorView: View {
                                 Text("Select")
                                 Spacer()
                                 
-                                if let iconUiImage = iconUiImage {
-                                    Image(uiImage: iconUiImage)
-                                        .resizable()
-                                        .aspectRatio(contentMode: .fill)
-                                        .frame(width: 60, height: 60)
-                                        .clipShape(Circle())
-                                        .overlay(Circle().stroke(Color.secondary, lineWidth: 2))
-                                        .padding(.all, 10)
+                                if let iconURL = iconNsUrl?.absoluteURL {
+                                    URLImage(url: iconURL) { image in
+                                        image
+                                            .resizable()
+                                            .aspectRatio(contentMode: .fill)
+                                            .frame(width: 60, height: 60)
+                                            .clipShape(Circle())
+                                            .overlay(Circle().stroke(Color.secondary, lineWidth: 2))
+                                            .padding(.all, 10)
+                                    }
                                 }
                             }
                         }
                         
-                        if iconUiImage != nil {
+                        if iconNsUrl != nil {
                             Button {
                                 withAnimation {
-                                    iconUiImage = nil
+                                    iconNsUrl = nil
                                 }
                             } label: {
                                 HStack {
@@ -147,7 +150,7 @@ struct CryptoCreatorView: View {
                 .sheet(item: $activeSheet) { item in
                     switch item {
                     case .image:
-                        ImagePickerView(cropToSquare: true, uiImage: $iconUiImage)
+                        ImagePickerView(imageNSURL: $iconNsUrl)
                     case .video:
                         VideoPickerView(videoNSURL: $videoNsUrl)
                     }
@@ -168,7 +171,7 @@ struct CryptoCreatorView: View {
                             DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
                                 let asset = CryptoAsset(id: UUID().uuidString, name: name, code: code, description: description)
                                 
-                                session.updateRemoteAsset(asset: asset, image: iconUiImage, videoNSURL: videoNsUrl) { (error) in
+                                session.updateRemoteAsset(asset: asset, iconNSURL: iconNsUrl, videoNSURL: videoNsUrl) { (error) in
                                     progress = false
                                     
                                     if error == nil {
