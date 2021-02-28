@@ -1,8 +1,8 @@
 //
-//  CryptoCreatorView.swift
+//  CryptoEditorView.swift
 //  Crypto-T
 //
-//  Created by Михаил Ковалевский on 26.02.2021.
+//  Created by Михаил Ковалевский on 28.02.2021.
 //
 
 import SwiftUI
@@ -10,7 +10,7 @@ import URLImage
 import AVKit
 
 
-enum CryptoCreatorViewSheet: Identifiable {
+enum CryptoEditorViewSheet: Identifiable {
     case image, video
     
     var id: Int {
@@ -18,28 +18,38 @@ enum CryptoCreatorViewSheet: Identifiable {
     }
 }
 
-struct CryptoCreatorView: View {
+struct CryptoEditorView: View {
     
-    let title = "New crypto"
+    let title = "Edit crypto"
     let descriptionPlaceholderString = "Description"
     
     @EnvironmentObject var session: Session
     
     @Binding var isPresented: Bool
     
-    @State var activeSheet: CryptoCreatorViewSheet? = nil
+    @State var activeSheet: CryptoEditorViewSheet? = nil
     
     @State var progress: Bool = false
     
-    @State var name: String = ""
-    @State var code: String = ""
-    @State var description: String = ""
+    @State var name: String
+    @State var code: String
+    @State var description: String
+    
     @State var iconNsUrl: NSURL? = nil
     @State var videoNsUrl: NSURL? = nil
     
+    let assetToEdit: CryptoAsset
     
-    // TODO: CHECK IF UNIQUE
-    func validateNewAsset() -> Bool {
+    
+    init(assetToEdit: CryptoAsset, isPresented: Binding<Bool>) {
+        self._isPresented = isPresented
+        self.assetToEdit = assetToEdit
+        self._name = State(initialValue: assetToEdit.name)
+        self._code = State(initialValue: assetToEdit.code)
+        self._description = State(initialValue: assetToEdit.description)
+    }
+    
+    func validateEditedAsset() -> Bool {
         if (
             name.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty ||
                 code.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty ||
@@ -166,23 +176,23 @@ struct CryptoCreatorView: View {
                     
                     ToolbarItem(placement: .confirmationAction) {
                         Button("Save") {
-                            withAnimation {
-                                progress = true
-                            }
-                            
-                            DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
-                                let asset = CryptoAsset(id: UUID().uuidString, name: name, code: code, description: description)
-                                
-                                session.updateRemoteAsset(asset: asset, iconNSURL: iconNsUrl, videoNSURL: videoNsUrl) { (error) in
-                                    progress = false
-                                    
-                                    if error == nil {
-                                        isPresented.toggle()
-                                    }
-                                }
-                            }
+//                            withAnimation {
+//                                progress = true
+//                            }
+//
+//                            DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+//                                let asset = CryptoAsset(id: UUID().uuidString, name: name, code: code, description: description)
+//
+//                                session.updateRemoteAsset(asset: asset, iconNSURL: iconNsUrl, videoNSURL: videoNsUrl) { (error) in
+//                                    progress = false
+//
+//                                    if error == nil {
+//                                        isPresented.toggle()
+//                                    }
+//                                }
+//                            }
                         }
-                        .disabled(!validateNewAsset())
+                        .disabled(!validateEditedAsset())
                     }
                 }
                 

@@ -18,9 +18,13 @@ struct CryptoCellView: View {
                 destination: CryptoDetailsView(asset: asset)
             ) {
                 HStack {
-                    CryptoIconView(asset.iconFileData?.downloadURL, 30)
-                    
-                    Text(asset.name)
+                    CryptoIconView(asset.iconFileData?.downloadURL, 50)
+                    VStack(alignment: .leading) {
+                        Text(asset.name)
+                        Text(asset.code)
+                            .foregroundColor(.secondary)
+                    }
+                    .padding(.leading, 5)
                     Spacer()
                     Image(systemName: "arrow.right")
                         .imageScale(.small)

@@ -14,12 +14,21 @@ struct CryptoDetailsView: View {
     
     let asset: CryptoAsset
     
+    @State var showCryptoEditor: Bool = false
+    
     var body: some View {
         Form {
             HStack {
                 Spacer()
-                CryptoIconView(asset.iconFileData?.downloadURL, 100)
+                CryptoIconView(asset.iconFileData?.downloadURL, 110)
                 Spacer()
+            }
+            
+            Section(header:
+                        Text("CODE")
+            ) {
+                Text(asset.code)
+                    .multilineTextAlignment(.leading)
             }
             
             Section(header:
@@ -46,10 +55,13 @@ struct CryptoDetailsView: View {
             
         }
         .navigationTitle(asset.name)
+        .sheet(isPresented: $showCryptoEditor, content: {
+            CryptoEditorView(assetToEdit: asset, isPresented: $showCryptoEditor)
+        })
         .toolbar {
             ToolbarItem(placement: .navigationBarTrailing) {
                 Button {
-                    print("tapped edit")
+                    showCryptoEditor.toggle()
                 } label: {
                     Image(systemName: "pencil")
                 }
