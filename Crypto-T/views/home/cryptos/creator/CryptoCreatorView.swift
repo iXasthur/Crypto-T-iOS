@@ -37,6 +37,7 @@ struct CryptoCreatorView: View {
     @State var iconNsUrl: NSURL? = nil
     @State var videoNsUrl: NSURL? = nil
     
+    
     func validateNewAsset() -> Bool {
         if (
             name.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty ||

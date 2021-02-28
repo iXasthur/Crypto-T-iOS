@@ -12,47 +12,13 @@ import URLImage
 
 struct CryptoDetailsView: View {
     
-    let imageSize: CGFloat = 100
-    
     let asset: CryptoAsset
-    
-    var placeholderIcon: some View {
-        Image(systemName: "cube")
-            .resizable()
-            .aspectRatio(contentMode: .fit)
-            .scaleEffect(0.5)
-            .frame(width: imageSize, height: imageSize)
-            .overlay(Circle().stroke(Color.purple.opacity(0.5), lineWidth: 3))
-    }
     
     var body: some View {
         Form {
             HStack {
                 Spacer()
-                if let iconURLString = asset.iconFileData?.downloadURL,
-                   let iconURL = URL(string: iconURLString) {
-                    URLImage(url: iconURL,
-                             empty: {
-                                placeholderIcon
-                             },
-                             inProgress: { _ in
-                                placeholderIcon
-                             },
-                             failure: { _, _ in
-                                placeholderIcon
-                             },
-                             content: { image in
-                                image
-                                    .resizable()
-                                    .aspectRatio(contentMode: .fill)
-                                    .frame(width: imageSize, height: imageSize)
-                                    .clipShape(Circle())
-                                    .overlay(Circle().stroke(Color.purple.opacity(0.5), lineWidth: 3))
-                             }
-                    )
-                } else {
-                    placeholderIcon
-                }
+                CryptoIconView(asset.iconFileData?.downloadURL, 100)
                 Spacer()
             }
             

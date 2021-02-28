@@ -27,6 +27,7 @@
 		D0A05A1925E5756F003FCB66 /* AuthData.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0A05A1825E5756F003FCB66 /* AuthData.swift */; };
 		D0A05A2625E57732003FCB66 /* AuthView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0A05A2525E57732003FCB66 /* AuthView.swift */; };
 		D0A05A2B25E57771003FCB66 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0A05A2A25E57771003FCB66 /* HomeView.swift */; };
+		D0C8AC9625EC13CB00EF0F9A /* CryptoImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0C8AC9525EC13CB00EF0F9A /* CryptoImageView.swift */; };
 		D0D9105225EBD6CF00629D54 /* AVURLAssetExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0D9105125EBD6CF00629D54 /* AVURLAssetExtensions.swift */; };
 		D0E24FC925E6A8A2000B5C8F /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = D0E24FC825E6A8A2000B5C8F /* GoogleService-Info.plist */; };
 		D0E24FD325E6ACCE000B5C8F /* Session.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0E24FD225E6ACCE000B5C8F /* Session.swift */; };
@@ -64,6 +65,7 @@
 		D0A05A1825E5756F003FCB66 /* AuthData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthData.swift; sourceTree = "<group>"; };
 		D0A05A2525E57732003FCB66 /* AuthView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthView.swift; sourceTree = "<group>"; };
 		D0A05A2A25E57771003FCB66 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
+		D0C8AC9525EC13CB00EF0F9A /* CryptoImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CryptoImageView.swift; sourceTree = "<group>"; };
 		D0D9105125EBD6CF00629D54 /* AVURLAssetExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AVURLAssetExtensions.swift; sourceTree = "<group>"; };
 		D0E24FC825E6A8A2000B5C8F /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		D0E24FD225E6ACCE000B5C8F /* Session.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Session.swift; sourceTree = "<group>"; };
@@ -203,6 +205,16 @@
 			path = home;
 			sourceTree = "<group>";
 		};
+		D0C8AC9825EC13D000EF0F9A /* utils */ = {
+			isa = PBXGroup;
+			children = (
+				D0C8AC9525EC13CB00EF0F9A /* CryptoImageView.swift */,
+				D03CA19E25E994A200A0D1F1 /* ImagePickerView.swift */,
+				D0E8A84B25EAF5910013B15E /* VideoPickerView.swift */,
+			);
+			path = utils;
+			sourceTree = "<group>";
+		};
 		D0E24FCC25E6AC5D000B5C8F /* crypto */ = {
 			isa = PBXGroup;
 			children = (
@@ -265,9 +277,8 @@
 			children = (
 				D03068CB25E54988001E2707 /* auth */,
 				D0A05A1C25E5768E003FCB66 /* home */,
+				D0C8AC9825EC13D000EF0F9A /* utils */,
 				D0792C5425E5234A00E5102C /* ContentView.swift */,
-				D03CA19E25E994A200A0D1F1 /* ImagePickerView.swift */,
-				D0E8A84B25EAF5910013B15E /* VideoPickerView.swift */,
 			);
 			path = views;
 			sourceTree = "<group>";
@@ -406,6 +417,7 @@
 				D0ED7AC625E578850018C086 /* CryptoDetailsView.swift in Sources */,
 				D03068D325E554AD001E2707 /* CryptoDashboard.swift in Sources */,
 				D0A05A2625E57732003FCB66 /* AuthView.swift in Sources */,
+				D0C8AC9625EC13CB00EF0F9A /* CryptoImageView.swift in Sources */,
 				D017124D25E9436300AC1560 /* CryptoCellView.swift in Sources */,
 				D0E24FD325E6ACCE000B5C8F /* Session.swift in Sources */,
 				D03068CD25E54B8F001E2707 /* MainTabView.swift in Sources */,
