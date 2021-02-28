@@ -173,7 +173,7 @@ struct CryptoCreatorView: View {
                                 progress = true
                             }
                             
-                            session.updateRemoteAsset(asset: asset, image: iconUiImage) { (error) in
+                            session.updateRemoteAsset(asset: asset, image: iconUiImage, videoNSURL: videoNsUrl) { (error) in
                                 progress = false
                                 
                                 if error == nil {

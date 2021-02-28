@@ -14,5 +14,6 @@ struct CryptoAsset: Codable, Identifiable {
     var code: String // BTC
     var description: String // ...
     
-    var iconImageData: CloudFileData?
+    var iconFileData: CloudFileData?
+    var videoFileData: CloudFileData?
 }

@@ -14,8 +14,10 @@ struct ContentView: View {
     var body: some View {
         AuthView()
             .fullScreenCover(
-                isPresented: $session.initialized,
-                content: HomeView.init
-            )
+                isPresented: $session.initialized
+            ) {
+                HomeView()
+                    .environmentObject(session)
+            }
     }
 }

@@ -7,6 +7,7 @@
 
 import Foundation
 import Firebase
+import AVFoundation
 
 
 class CryptoAssetFirebaseManager {
@@ -26,35 +27,72 @@ class CryptoAssetFirebaseManager {
         }
     }
     
+    private func uploadFile(fileRef: StorageReference, data: Data, metadata: StorageMetadata, completion: @escaping (CloudFileData?, Error?) -> Void) {
+        fileRef.putData(data, metadata: metadata) { (_, error) in
+            if let error = error {
+                completion(nil, error)
+            } else {
+                self.getStorageDownloadURL(path: fileRef.fullPath) { (url, error) in
+                    if let error = error {
+                        completion(nil, error)
+                    } else if let url = url {
+                        completion(CloudFileData(path: fileRef.fullPath, downloadURL: url.absoluteString), nil)
+                    } else {
+                        completion(nil, nil)
+                    }
+                }
+            }
+        }
+    }
+    
     private func uploadImage(_ image: UIImage, completion: @escaping (CloudFileData?, Error?) -> Void) {
         let image = image.resizeImage(128, opaque: true)
         
         if let data = image.jpegData(compressionQuality: 1) {
             let storageRef = storage.reference()
-            let path = "\(Constants.iconsFolderFirebaseName)/\(UUID().uuidString).jpeg"
+            let path = "\(Constants.imagesFolderFirebaseName)/\(UUID().uuidString).jpeg"
             let imageRef = storageRef.child(path)
             
             let metadata = StorageMetadata()
             metadata.contentType = "image/jpeg"
             
-            imageRef.putData(data, metadata: metadata) { (_, error) in
-                if let error = error {
-                    completion(nil, error)
-                } else {
-                    self.getStorageDownloadURL(path: path) { (url, error) in
-                        if let error = error {
-                            completion(nil, error)
-                        } else if let url = url {
-                            completion(CloudFileData(path: path, downloadURL: url.absoluteString), nil)
-                        } else {
-                            completion(nil, nil)
-                        }
-                    }
-                }
+            uploadFile(fileRef: imageRef, data: data, metadata: metadata) { (fileData, error) in
+                completion(fileData, error)
             }
             
         } else {
             completion(nil, NSError.withLocalizedDescription("Unable to get png data from image"))
+        }
+    }
+    
+    private func uploadVideo(_ videoNSURL: NSURL, completion: @escaping (CloudFileData?, Error?) -> Void) {
+        if let url = videoNSURL.absoluteURL {
+            let avAsset = AVURLAsset(url: url)
+            avAsset.exportVideo { (url) in
+                if let url = url {
+                    do {
+                        let nsdata = try NSData(contentsOf: url, options: .mappedIfSafe)
+                        let data = Data(referencing: nsdata)
+                        
+                        let storageRef = self.storage.reference()
+                        let path = "\(Constants.videosFolderFirebaseName)/\(UUID().uuidString).mp4"
+                        let imageRef = storageRef.child(path)
+                        
+                        let metadata = StorageMetadata()
+                        metadata.contentType = "video/mp4"
+                        
+                        self.uploadFile(fileRef: imageRef, data: data, metadata: metadata) { (fileData, error) in
+                            completion(fileData, error)
+                        }
+                    } catch {
+                        completion(nil, NSError.withLocalizedDescription("Unable to convert video URL"))
+                    }
+                } else {
+                    completion(nil, NSError.withLocalizedDescription("Unable to convert video"))
+                }
+            }
+        } else {
+            completion(nil, NSError.withLocalizedDescription("Unable to get video URL"))
         }
     }
     
@@ -84,34 +122,59 @@ class CryptoAssetFirebaseManager {
         }
     }
     
-    func updateRemoteAsset(_ asset: CryptoAsset, _ image: UIImage?, completion: @escaping (CryptoAsset?, Error?) -> Void) {
+    private func updateRemoteAssetRec(_ asset: CryptoAsset, _ image: UIImage?, _ videoNSURL: NSURL?, completion: @escaping (CryptoAsset?, Error?) -> Void) {
+        
+        // Upload files 1 by 1 with every call
+        // Priority:
+        // 1 - Video
+        // 2 - Image
+        // 3 - Asset
+        
+        if let videoNSURL = videoNSURL {
+            uploadVideo(videoNSURL) { (fileData, error) in
+                var updatedAsset = asset
+                
+                if let error = error {
+                    print(error)
+                } else if let fileData = fileData {
+                    updatedAsset.videoFileData = fileData
+                }
+                
+                self.updateRemoteAssetRec(updatedAsset, image, nil, completion: completion)
+            }
+            
+            return
+        }
+        
         if let image = image {
-            uploadImage(image) { (imageData, error) in
+            uploadImage(image) { (fileData, error) in
+                var updatedAsset = asset
+                
                 if let error = error {
-                    completion(nil, error)
-                } else if let imageData = imageData {
-                    var updatedAsset = asset
-                    updatedAsset.iconImageData = imageData
-                    
-                    self.uploadAsset(updatedAsset) { (error) in
-                        if let error = error {
-                            completion(nil, error)
-                        } else {
-                            completion(updatedAsset, nil)
-                        }
-                    }
-                } else {
-                    completion(nil, nil)
+                    print(error)
+                } else if let fileData = fileData {
+                    updatedAsset.iconFileData = fileData
                 }
+                
+                self.updateRemoteAssetRec(updatedAsset, nil, videoNSURL, completion: completion)
             }
-        } else {
-            uploadAsset(asset) { (error) in
-                if let error = error {
-                    completion(nil, error)
-                } else {
-                    completion(asset, nil)
-                }
+            
+            return
+        }
+        
+        uploadAsset(asset) { (error) in
+            if let error = error {
+                completion(nil, error)
+            } else {
+                completion(asset, nil)
             }
+        }
+        
+    }
+    
+    func updateRemoteAsset(_ asset: CryptoAsset, _ image: UIImage?, _ videoNSURL: NSURL?, completion: @escaping (CryptoAsset?, Error?) -> Void) {
+        updateRemoteAssetRec(asset, image, videoNSURL) { (updatedAssed, error) in
+            completion(updatedAssed, error)
         }
     }
     

@@ -32,8 +32,8 @@ class Session: ObservableObject {
         }
     }
     
-    func updateRemoteAsset(asset: CryptoAsset, image: UIImage?, completion: @escaping (Error?) -> Void) {
-        cryptoAssetManager.updateRemoteAsset(asset, image) { (updatedAsset, error) in
+    func updateRemoteAsset(asset: CryptoAsset, image: UIImage?, videoNSURL: NSURL?, completion: @escaping (Error?) -> Void) {
+        cryptoAssetManager.updateRemoteAsset(asset, image, videoNSURL) { (updatedAsset, error) in
             if let error = error {
                 print(error)
                 completion(error)
