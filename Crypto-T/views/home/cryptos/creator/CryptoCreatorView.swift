@@ -36,8 +36,6 @@ struct CryptoCreatorView: View {
     @State var iconUiImage: UIImage? = nil
     @State var videoNsUrl: NSURL? = nil
     
-    private let videoPlayer: AVPlayer = AVPlayer()
-    
     func validateNewAsset() -> Bool {
         if (
             name.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty ||
@@ -123,14 +121,10 @@ struct CryptoCreatorView: View {
                         }
                         
                         if let url = videoNsUrl?.absoluteURL {
-                            let playerItem: AVPlayerItem = AVPlayerItem(url: url)
+                            let videoPlayer: AVPlayer = AVPlayer(url: url)
                             
                             VideoPlayer(player: videoPlayer)
                                 .aspectRatio(16.0/9.0, contentMode: .fit)
-                                .onAppear {
-                                    videoPlayer.replaceCurrentItem(with: playerItem)
-                                }
-                                .id(UUID()) // Forces to call onAppear()
                             
                             Button {
                                 videoPlayer.pause()
@@ -167,17 +161,19 @@ struct CryptoCreatorView: View {
                     
                     ToolbarItem(placement: .confirmationAction) {
                         Button("Save") {
-                            let asset = CryptoAsset(id: UUID().uuidString, name: name, code: code, description: description)
-                            
                             withAnimation {
                                 progress = true
                             }
                             
-                            session.updateRemoteAsset(asset: asset, image: iconUiImage, videoNSURL: videoNsUrl) { (error) in
-                                progress = false
+                            DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+                                let asset = CryptoAsset(id: UUID().uuidString, name: name, code: code, description: description)
                                 
-                                if error == nil {
-                                    isPresented.toggle()
+                                session.updateRemoteAsset(asset: asset, image: iconUiImage, videoNSURL: videoNsUrl) { (error) in
+                                    progress = false
+                                    
+                                    if error == nil {
+                                        isPresented.toggle()
+                                    }
                                 }
                             }
                         }
@@ -190,5 +186,6 @@ struct CryptoCreatorView: View {
                 }
             }
         }
+        .allowsHitTesting(!progress)
     }
 }
