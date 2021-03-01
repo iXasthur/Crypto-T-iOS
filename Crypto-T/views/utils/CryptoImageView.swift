@@ -19,7 +19,9 @@ struct CryptoIconView: View {
            let iconURL = URL(string: iconURLString) {
             url = iconURL
         } else {
-            print("Unable to process CryptoIconView urlString")
+            if urlString != nil {
+                print("Unable to process CryptoIconView urlString")
+            }
             url = nil
         }
         

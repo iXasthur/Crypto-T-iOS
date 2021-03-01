@@ -22,6 +22,12 @@ class Session: ObservableObject {
         return dashboard?.assets
     }
     
+    func getLocalAsset(id: String) -> CryptoAsset? {
+        return getLocalAssets()?.first(where: { (asset) -> Bool in
+            asset.id == id
+        })
+    }
+    
     private func updateLocalAsset(_ asset: CryptoAsset) {
         if let index = dashboard?.assets.firstIndex(where: { (a) -> Bool in
             a.id == asset.id

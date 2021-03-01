@@ -27,6 +27,14 @@ class CryptoAssetFirebaseManager {
         }
     }
     
+    private func deleteFile(file: CloudFileData, completion: @escaping (Error?) -> Void) {
+        let storageRef = self.storage.reference()
+        let fileRef = storageRef.child(file.path)
+        fileRef.delete { (error) in
+            completion(error)
+        }
+    }
+    
     private func uploadFile(fileRef: StorageReference, data: Data, metadata: StorageMetadata, completion: @escaping (CloudFileData?, Error?) -> Void) {
         fileRef.putData(data, metadata: metadata) { (_, error) in
             if let error = error {
@@ -38,7 +46,7 @@ class CryptoAssetFirebaseManager {
                     } else if let url = url {
                         completion(CloudFileData(path: fileRef.fullPath, downloadURL: url.absoluteString), nil)
                     } else {
-                        completion(nil, nil)
+                        completion(nil, NSError.withLocalizedDescription("Both _ and error in uploadFile are nil"))
                     }
                 }
             }
@@ -139,33 +147,76 @@ class CryptoAssetFirebaseManager {
         // 2 - Image
         // 3 - Asset
         
-        if let videoNSURL = videoNSURL {
-            uploadVideo(videoNSURL) { (fileData, error) in
-                var updatedAsset = asset
-                
-                if let error = error {
-                    print(error)
-                } else if let fileData = fileData {
-                    updatedAsset.videoFileData = fileData
+        if asset.videoFileData?.downloadURL != videoNSURL?.absoluteString {
+            var updatedAsset = asset
+            
+            // Delete previous file in background
+            if let videoFileData = asset.videoFileData {
+                updatedAsset.videoFileData = nil
+                deleteFile(file: videoFileData) { (error) in
+                    if let error = error {
+                        print(error)
+                    } else {
+                        print("Deleted icon with path \(videoFileData.path)")
+                    }
                 }
-                
-                self.updateRemoteAssetRec(updatedAsset, iconNSURL, nil, completion: completion)
+            }
+            
+            // Upload with recursive call in completion
+            if let videoNSURL = videoNSURL {
+                uploadVideo(videoNSURL) { (fileData, error) in
+                    if let error = error {
+                        // Error uploading video so we ignore it
+                        print(error)
+                        self.updateRemoteAssetRec(updatedAsset, iconNSURL, nil, completion: completion)
+                    } else if let fileData = fileData {
+                        // Successful video upload
+                        updatedAsset.videoFileData = fileData
+                        
+                        let downloadnsurl = NSURL(string: fileData.downloadURL)
+                        self.updateRemoteAssetRec(updatedAsset, iconNSURL, downloadnsurl, completion: completion)
+                    }
+                }
+            } else {
+                self.updateRemoteAssetRec(updatedAsset, iconNSURL, videoNSURL, completion: completion)
             }
             
             return
         }
         
-        if let iconNSURL = iconNSURL {
-            uploadImage(iconNSURL) { (fileData, error) in
-                var updatedAsset = asset
-                
-                if let error = error {
-                    print(error)
-                } else if let fileData = fileData {
-                    updatedAsset.iconFileData = fileData
+        
+        if asset.iconFileData?.downloadURL != iconNSURL?.absoluteString {
+            var updatedAsset = asset
+            
+            // Delete previous file in background
+            if let iconFileData = asset.iconFileData {
+                updatedAsset.iconFileData = nil
+                deleteFile(file: iconFileData) { (error) in
+                    if let error = error {
+                        print(error)
+                    } else {
+                        print("Deleted icon with path \(iconFileData.path)")
+                    }
                 }
-                
-                self.updateRemoteAssetRec(updatedAsset, nil, videoNSURL, completion: completion)
+            }
+            
+            // Upload with recursive call in completion
+            if let iconNSURL = iconNSURL {
+                uploadImage(iconNSURL) { (fileData, error) in
+                    if let error = error {
+                        // Error uploading video so we ignore it
+                        print(error)
+                        self.updateRemoteAssetRec(updatedAsset, nil, videoNSURL, completion: completion)
+                    } else if let fileData = fileData {
+                        // Successful video upload
+                        updatedAsset.iconFileData = fileData
+                        
+                        let downloadnsurl = NSURL(string: fileData.downloadURL)
+                        self.updateRemoteAssetRec(updatedAsset, downloadnsurl, videoNSURL, completion: completion)
+                    }
+                }
+            } else {
+                self.updateRemoteAssetRec(updatedAsset, iconNSURL, videoNSURL, completion: completion)
             }
             
             return
@@ -181,6 +232,7 @@ class CryptoAssetFirebaseManager {
         
     }
     
+    // TODO: DELETE OLD FILES SOMEWHERE
     func updateRemoteAsset(_ asset: CryptoAsset, _ iconNSURL: NSURL?, _ videoNSURL: NSURL?, completion: @escaping (CryptoAsset?, Error?) -> Void) {
         updateRemoteAssetRec(asset, iconNSURL, videoNSURL) { (updatedAssed, error) in
             completion(updatedAssed, error)
@@ -213,7 +265,7 @@ class CryptoAssetFirebaseManager {
                 
                 completion(assets, nil)
             } else {
-                completion(nil, nil)
+                completion(nil, NSError.withLocalizedDescription("Both query and error in getRemoteAssets are nil"))
             }
         }
     }

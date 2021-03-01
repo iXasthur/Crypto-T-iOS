@@ -35,8 +35,8 @@ struct CryptoEditorView: View {
     @State var code: String
     @State var description: String
     
-    @State var iconNsUrl: NSURL? = nil
-    @State var videoNsUrl: NSURL? = nil
+    @State var iconNsUrl: NSURL?
+    @State var videoNsUrl: NSURL?
     
     let assetToEdit: CryptoAsset
     
@@ -47,6 +47,14 @@ struct CryptoEditorView: View {
         self._name = State(initialValue: assetToEdit.name)
         self._code = State(initialValue: assetToEdit.code)
         self._description = State(initialValue: assetToEdit.description)
+        
+        if let iconFileData = assetToEdit.iconFileData {
+            self._iconNsUrl = State(initialValue: NSURL(string: iconFileData.downloadURL))
+        }
+        
+        if let videoFileData = assetToEdit.videoFileData {
+            self._videoNsUrl = State(initialValue: NSURL(string: videoFileData.downloadURL))
+        }
     }
     
     func validateEditedAsset() -> Bool {
@@ -176,21 +184,21 @@ struct CryptoEditorView: View {
                     
                     ToolbarItem(placement: .confirmationAction) {
                         Button("Save") {
-//                            withAnimation {
-//                                progress = true
-//                            }
-//
-//                            DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
-//                                let asset = CryptoAsset(id: UUID().uuidString, name: name, code: code, description: description)
-//
-//                                session.updateRemoteAsset(asset: asset, iconNSURL: iconNsUrl, videoNSURL: videoNsUrl) { (error) in
-//                                    progress = false
-//
-//                                    if error == nil {
-//                                        isPresented.toggle()
-//                                    }
-//                                }
-//                            }
+                            withAnimation {
+                                progress = true
+                            }
+
+                            DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+                                let asset = CryptoAsset(id: assetToEdit.id, name: name, code: code, description: description)
+
+                                session.updateRemoteAsset(asset: asset, iconNSURL: iconNsUrl, videoNSURL: videoNsUrl) { (error) in
+                                    progress = false
+
+                                    if error == nil {
+                                        isPresented.toggle()
+                                    }
+                                }
+                            }
                         }
                         .disabled(!validateEditedAsset())
                     }
