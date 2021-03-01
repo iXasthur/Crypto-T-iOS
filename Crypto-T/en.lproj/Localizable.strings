@@ -27,6 +27,7 @@
 "video" = "Video";
 "welcome_exclamation_mark" = "Welcome!";
 "something_went_wrong" = "Something went wrong";
+"email_and_password_must_be_not_empty" = "Email and password must be not empty";
 "settings" = "Settings";
 "sys_lang" = "System";
 "en_lang" = "English";

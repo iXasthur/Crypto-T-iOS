@@ -14,7 +14,7 @@ struct AuthUniversalView: View {
     @State var email: String = ""
     @State var password: String = ""
     
-    @State var errorText: String = ""
+    @State var errorText: LocalizedStringKey = ""
     
     @State var progress: Bool = false
     
@@ -108,7 +108,7 @@ struct AuthUniversalView: View {
     }
     
     func validateEmailPassword() -> Bool {
-        return email.isEmpty || password.isEmpty
+        return !(email.isEmpty || password.isEmpty)
     }
     
     func restoreSession() {
@@ -121,8 +121,9 @@ struct AuthUniversalView: View {
                 progress = false
             }
             
-            if let error = error {
-                self.errorText = "something_went_wrong"
+            if error != nil {
+                print("Unable to restore session")
+//                self.errorText = "something_went_wrong"
             }
         }) {
             email = authData.email
@@ -143,10 +144,12 @@ struct AuthUniversalView: View {
                     progress = false
                 }
                 
-                if let error = error {
+                if error != nil {
                     self.errorText = "something_went_wrong"
                 }
             }
+        } else {
+            self.errorText = "email_and_password_must_be_not_empty"
         }
     }
     
@@ -163,12 +166,12 @@ struct AuthUniversalView: View {
                     progress = false
                 }
                 
-                if let error = error {
+                if error != nil {
                     self.errorText = "something_went_wrong"
                 }
             }
         } else {
-            
+            self.errorText = "email_and_password_must_be_not_empty"
         }
     }
 }
