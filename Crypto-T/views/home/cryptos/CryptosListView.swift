@@ -9,8 +9,6 @@ import SwiftUI
 
 struct CryptosListView: View {
     
-    let title = "cryptos"
-    
     @EnvironmentObject var session: Session
     
     @State var showCryptoCreator: Bool = false
@@ -35,10 +33,9 @@ struct CryptosListView: View {
                     Text("there_is_no_cryptos")
                         .multilineTextAlignment(.center)
                         .padding()
-                        .navigationBarTitle(title)
                 }
             }
-            .navigationBarTitle(title, displayMode: .inline)
+            .navigationBarTitle("cryptos", displayMode: .inline)
             .toolbar {
                 ToolbarItem(placement: .navigationBarTrailing) {
                     Button {
@@ -51,6 +48,7 @@ struct CryptosListView: View {
             .sheet(isPresented: $showCryptoCreator) {
                 CryptoUniversalCEView(isPresented: $showCryptoCreator)
                     .environmentObject(session)
+                    .environment(\.locale, Locale(identifier: session.settings.localization.languageCode))
             }
         }
     }

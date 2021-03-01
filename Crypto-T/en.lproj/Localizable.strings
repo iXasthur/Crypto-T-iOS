@@ -1,0 +1,39 @@
+/* 
+  Localizable.strings
+  Crypto-T
+
+  Created by Михаил Ковалевский on 02.03.2021.
+  
+*/
+
+"code" = "Code";
+"delete" = "Delete";
+"description" = "Description";
+"email" = "Email";
+"event" = "Event";
+"general" = "General";
+"icon" = "Icon";
+"language" = "Language";
+"latitude" = "Latitude";
+"longitude" = "Longitude";
+"log_out" = "Log Out";
+"name" = "Name";
+"pick_location" = "Pick location";
+"remove" = "Remove";
+"select" = "Select";
+"sign_in" = "Sign In";
+"sign_up" = "Sign Up";
+"there_is_no_cryptos" = "There is no cryptos";
+"video" = "Video";
+"welcome_exclamation_mark" = "Welcome!";
+"something_went_wrong" = "Something went wrong";
+"settings" = "Settings";
+"sys_lang" = "System";
+"en_lang" = "English";
+"ru_lang" = "Русский";
+"map" = "Map";
+"cryptos" = "Cryptos";
+"back" = "Back";
+"save" = "Save";
+"new_crypto" = "New Crypto";
+"edit_crypto" = "Edit Crypto";

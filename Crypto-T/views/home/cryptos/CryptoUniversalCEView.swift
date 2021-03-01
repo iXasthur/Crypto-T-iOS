@@ -20,13 +20,6 @@ enum CryptoUniversalCEViewSheet: Identifiable {
 
 struct CryptoUniversalCEView: View {
     
-    let creatorTitle = "new_crypto"
-    let editorTitle = "edit_crypto"
-    let descriptionPlaceholderString = "description"
-    let notePlaceholderString = "note"
-    
-    let title: String
-    
     @EnvironmentObject var session: Session
     
     @Binding var isPresented: Bool
@@ -52,7 +45,6 @@ struct CryptoUniversalCEView: View {
     // Init as creator
     init(isPresented: Binding<Bool>) {
         self._isPresented = isPresented
-        self.title = creatorTitle
         self.assetToEdit = nil
         self.additionalOnDeleteAction = nil
         
@@ -70,7 +62,6 @@ struct CryptoUniversalCEView: View {
     // Init as editor
     init(assetToEdit: CryptoAsset, onDelete: @escaping () -> Void, isPresented: Binding<Bool>) {
         self._isPresented = isPresented
-        self.title = editorTitle
         self.assetToEdit = assetToEdit
         self.additionalOnDeleteAction = onDelete
         
@@ -126,7 +117,7 @@ struct CryptoUniversalCEView: View {
                         TextField("code", text: $code)
                             .disableAutocorrection(true)
                             .autocapitalization(.allCharacters)
-                        TextField(descriptionPlaceholderString, text: $description)
+                        TextField("description", text: $description)
                     }
                     
                     Section(
@@ -231,7 +222,7 @@ struct CryptoUniversalCEView: View {
                             }
                             .foregroundColor(.secondary)
                             
-                            TextField(notePlaceholderString, text: $eventNote)
+                            TextField("note", text: $eventNote)
                             
                             Button {
                                 withAnimation {
@@ -277,7 +268,7 @@ struct CryptoUniversalCEView: View {
                         }
                     }
                 }
-                .navigationBarTitle(title, displayMode: .inline)
+                .navigationBarTitle(assetToEdit != nil ? "edit_crypto" : "new_crypto", displayMode: .inline)
                 .sheet(item: $activeSheet) { item in
                     switch item {
                     case .image:

@@ -11,22 +11,21 @@ struct SettingsView: View {
     
     @EnvironmentObject var session: Session
     
-    @State var selectedLanguage: UserLocale = .system
-    
     var body: some View {
         NavigationView {
             Form {
-                Section(header: Text("language")) {
-                    Picker("", selection: $selectedLanguage) {
-                        ForEach(UserLocale.available) { loc in
-                            Text(loc.rawValue)
-                                .tag(loc)
-                        }
+                Section(header:
+                            Text("language")
+                ) {
+                    Picker("123", selection: $session.settings.localization) {
+                        Text("sys_lang")
+                            .tag(UserLocale.system)
+                        Text("en_lang")
+                            .tag(UserLocale.en)
+                        Text("ru_lang")
+                            .tag(UserLocale.ru)
                     }
                     .pickerStyle(SegmentedPickerStyle())
-                    .onChange(of: selectedLanguage) { (l) in
-                        session.settings.setLocalization(l)
-                    }
                 }
                 Section(header: Text("general")) {
                     Section {

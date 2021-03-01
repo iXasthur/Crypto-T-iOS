@@ -18,6 +18,7 @@ struct ContentView: View {
             ) {
                 HomeView()
                     .environmentObject(session)
+                    .environment(\.locale, Locale(identifier: session.settings.localization.languageCode))
             }
     }
 }

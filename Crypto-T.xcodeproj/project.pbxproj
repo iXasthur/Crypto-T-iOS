@@ -14,6 +14,7 @@
 		D017124A25E9434E00AC1560 /* CryptosListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D017124925E9434E00AC1560 /* CryptosListView.swift */; };
 		D017124D25E9436300AC1560 /* CryptoCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D017124C25E9436300AC1560 /* CryptoCellView.swift */; };
 		D030653625ED895400F2499A /* UserLocale.swift in Sources */ = {isa = PBXBuildFile; fileRef = D030653525ED895400F2499A /* UserLocale.swift */; };
+		D030654225ED967900F2499A /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = D030654425ED967900F2499A /* Localizable.strings */; };
 		D03068CD25E54B8F001E2707 /* MainTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D03068CC25E54B8F001E2707 /* MainTabView.swift */; };
 		D03068D325E554AD001E2707 /* CryptoDashboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = D03068D225E554AD001E2707 /* CryptoDashboard.swift */; };
 		D03068D625E55D8A001E2707 /* CryptoAsset.swift in Sources */ = {isa = PBXBuildFile; fileRef = D03068D525E55D8A001E2707 /* CryptoAsset.swift */; };
@@ -56,6 +57,8 @@
 		D017124925E9434E00AC1560 /* CryptosListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CryptosListView.swift; sourceTree = "<group>"; };
 		D017124C25E9436300AC1560 /* CryptoCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CryptoCellView.swift; sourceTree = "<group>"; };
 		D030653525ED895400F2499A /* UserLocale.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserLocale.swift; sourceTree = "<group>"; };
+		D030654325ED967900F2499A /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		D030654625ED967C00F2499A /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/Localizable.strings; sourceTree = "<group>"; };
 		D03068CC25E54B8F001E2707 /* MainTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabView.swift; sourceTree = "<group>"; };
 		D03068D225E554AD001E2707 /* CryptoDashboard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CryptoDashboard.swift; sourceTree = "<group>"; };
 		D03068D525E55D8A001E2707 /* CryptoAsset.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CryptoAsset.swift; sourceTree = "<group>"; };
@@ -185,6 +188,7 @@
 				D0792C5B25E5234B00E5102C /* Info.plist */,
 				D0792C5625E5234B00E5102C /* Assets.xcassets */,
 				D0792C5825E5234B00E5102C /* Preview Content */,
+				D030654425ED967900F2499A /* Localizable.strings */,
 			);
 			path = "Crypto-T";
 			sourceTree = "<group>";
@@ -355,6 +359,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				D0792C5A25E5234B00E5102C /* Preview Assets.xcassets in Resources */,
+				D030654225ED967900F2499A /* Localizable.strings in Resources */,
 				D0792C5725E5234B00E5102C /* Assets.xcassets in Resources */,
 				D0E24FC925E6A8A2000B5C8F /* GoogleService-Info.plist in Resources */,
 			);
@@ -463,6 +468,18 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		D030654425ED967900F2499A /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				D030654325ED967900F2499A /* en */,
+				D030654625ED967C00F2499A /* ru */,
+			);
+			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
 		D0792C5C25E5234B00E5102C /* Debug */ = {

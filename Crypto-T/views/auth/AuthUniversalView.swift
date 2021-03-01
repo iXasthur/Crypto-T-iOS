@@ -108,26 +108,7 @@ struct AuthUniversalView: View {
     }
     
     func validateEmailPassword() -> Bool {
-        var newErrorText: String? = nil
-        
-        if email.isEmpty {
-            newErrorText = (newErrorText ?? "") + "Email must be not empty."
-        }
-        
-        if password.isEmpty {
-            if newErrorText != nil {
-                newErrorText = newErrorText! + "\nPassword must be not empty."
-            } else {
-                newErrorText = "Password must be not empty."
-            }
-        }
-        
-        if newErrorText != nil {
-            errorText = newErrorText!
-            return false
-        } else {
-            return true
-        }
+        return email.isEmpty || password.isEmpty
     }
     
     func restoreSession() {
@@ -141,7 +122,7 @@ struct AuthUniversalView: View {
             }
             
             if let error = error {
-                self.errorText = error.localizedDescription
+                self.errorText = "something_went_wrong"
             }
         }) {
             email = authData.email
@@ -163,7 +144,7 @@ struct AuthUniversalView: View {
                 }
                 
                 if let error = error {
-                    self.errorText = error.localizedDescription
+                    self.errorText = "something_went_wrong"
                 }
             }
         }
@@ -183,9 +164,11 @@ struct AuthUniversalView: View {
                 }
                 
                 if let error = error {
-                    self.errorText = error.localizedDescription
+                    self.errorText = "something_went_wrong"
                 }
             }
+        } else {
+            
         }
     }
 }
