@@ -106,6 +106,7 @@ class Session: ObservableObject {
     func destroy() {
         initialized = false
         
+        settings.localization = .system
         AuthDataStorage.deleteFromKeychain()
         
         do {
