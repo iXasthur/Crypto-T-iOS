@@ -43,7 +43,7 @@ struct GoogleMapsLocationPickerView: View {
                     .aspectRatio(contentMode: .fit)
                     .foregroundColor(Color.accentColor)
                     .frame(width: 20, height: 20)
-                    .padding(.bottom, 10)
+                    .padding(.bottom, 20)
             }
         }
     }
