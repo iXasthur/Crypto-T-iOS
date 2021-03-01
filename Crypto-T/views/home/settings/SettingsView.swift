@@ -17,7 +17,7 @@ struct SettingsView: View {
                 Section(header:
                             Text("language")
                 ) {
-                    Picker("123", selection: $session.settings.localization) {
+                    Picker("", selection: $session.settings.localization) {
                         Text("sys_lang")
                             .tag(UserLocale.system)
                         Text("en_lang")
@@ -26,6 +26,7 @@ struct SettingsView: View {
                             .tag(UserLocale.ru)
                     }
                     .pickerStyle(SegmentedPickerStyle())
+                    .labelsHidden()
                 }
                 Section(header: Text("general")) {
                     Section {
