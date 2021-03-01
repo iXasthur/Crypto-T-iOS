@@ -56,7 +56,7 @@ struct CryptoDetailsView: View {
         }
         .navigationTitle(asset.name)
         .sheet(isPresented: $showCryptoEditor, content: {
-            CryptoEditorView(assetToEdit: asset, isPresented: $showCryptoEditor)
+            CryptoUniversalCEView(assetToEdit: asset, isPresented: $showCryptoEditor)
         })
         .toolbar {
             ToolbarItem(placement: .navigationBarTrailing) {

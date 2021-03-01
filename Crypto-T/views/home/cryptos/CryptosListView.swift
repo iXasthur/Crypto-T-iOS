@@ -44,7 +44,7 @@ struct CryptosListView: View {
                 }
             }
             .sheet(isPresented: $showCryptoCreator) {
-                CryptoCreatorView(isPresented: $showCryptoCreator)
+                CryptoUniversalCEView(isPresented: $showCryptoCreator)
                     .environmentObject(session)
             }
         }

@@ -1,8 +1,8 @@
 //
-//  CryptoEditorView.swift
+//  CryptoUniversalCEView.swift
 //  Crypto-T
 //
-//  Created by Михаил Ковалевский on 28.02.2021.
+//  Created by Михаил Ковалевский on 01.03.2021.
 //
 
 import SwiftUI
@@ -10,7 +10,7 @@ import URLImage
 import AVKit
 
 
-enum CryptoEditorViewSheet: Identifiable {
+enum CryptoUniversalCEViewSheet: Identifiable {
     case image, video
     
     var id: Int {
@@ -18,16 +18,19 @@ enum CryptoEditorViewSheet: Identifiable {
     }
 }
 
-struct CryptoEditorView: View {
+struct CryptoUniversalCEView: View {
     
-    let title = "Edit crypto"
+    let creatorTitle = "New crypto"
+    let editorTitle = "Edit crypto"
     let descriptionPlaceholderString = "Description"
+    
+    let title: String
     
     @EnvironmentObject var session: Session
     
     @Binding var isPresented: Bool
     
-    @State var activeSheet: CryptoEditorViewSheet? = nil
+    @State var activeSheet: CryptoUniversalCEViewSheet? = nil
     
     @State var progress: Bool = false
     
@@ -38,22 +41,41 @@ struct CryptoEditorView: View {
     @State var iconNsUrl: NSURL?
     @State var videoNsUrl: NSURL?
     
-    let assetToEdit: CryptoAsset
+    let assetToEdit: CryptoAsset?
     
+    // Init as creator
+    init(isPresented: Binding<Bool>) {
+        self._isPresented = isPresented
+        self.title = creatorTitle
+        self.assetToEdit = nil
+        
+        self._name = State(initialValue: "")
+        self._code = State(initialValue: "")
+        self._description = State(initialValue: "")
+        self._iconNsUrl = State(initialValue: nil)
+        self._videoNsUrl = State(initialValue: nil)
+    }
     
+    // Init as editor
     init(assetToEdit: CryptoAsset, isPresented: Binding<Bool>) {
         self._isPresented = isPresented
+        self.title = editorTitle
         self.assetToEdit = assetToEdit
+        
         self._name = State(initialValue: assetToEdit.name)
         self._code = State(initialValue: assetToEdit.code)
         self._description = State(initialValue: assetToEdit.description)
         
         if let iconFileData = assetToEdit.iconFileData {
             self._iconNsUrl = State(initialValue: NSURL(string: iconFileData.downloadURL))
+        } else {
+            self._iconNsUrl = State(initialValue: nil)
         }
         
         if let videoFileData = assetToEdit.videoFileData {
             self._videoNsUrl = State(initialValue: NSURL(string: videoFileData.downloadURL))
+        } else {
+            self._videoNsUrl = State(initialValue: nil)
         }
     }
     
@@ -189,7 +211,14 @@ struct CryptoEditorView: View {
                             }
 
                             DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
-                                let asset = CryptoAsset(id: assetToEdit.id, name: name, code: code, description: description)
+                                let asset = CryptoAsset(
+                                    id: assetToEdit?.id ?? UUID().uuidString,
+                                    name: name,
+                                    code: code,
+                                    description: description,
+                                    iconFileData: assetToEdit?.iconFileData,
+                                    videoFileData: assetToEdit?.videoFileData
+                                )
 
                                 session.updateRemoteAsset(asset: asset, iconNSURL: iconNsUrl, videoNSURL: videoNsUrl) { (error) in
                                     progress = false
@@ -212,3 +241,4 @@ struct CryptoEditorView: View {
         .allowsHitTesting(!progress)
     }
 }
+
