@@ -14,4 +14,7 @@ target 'Crypto-T' do
 
   pod 'SwiftKeychainWrapper'
   pod 'URLImage'
+
+  pod 'GoogleMaps'
+  pod 'GooglePlaces'
 end
