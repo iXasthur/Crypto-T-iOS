@@ -13,7 +13,6 @@ enum UserLocale: String, Identifiable, Codable {
     }
     
     var languageCode: String {
-        print(self)
         switch self {
         case .system:
             if let systemLanguageCode: String = Locale.current.languageCode {
