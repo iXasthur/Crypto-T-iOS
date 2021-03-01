@@ -12,6 +12,8 @@ import URLImage
 
 struct CryptoDetailsView: View {
     
+    @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
+    
     let asset: CryptoAsset
     
     @State var showCryptoEditor: Bool = false

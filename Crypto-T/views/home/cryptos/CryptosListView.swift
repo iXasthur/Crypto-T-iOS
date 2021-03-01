@@ -21,8 +21,13 @@ struct CryptosListView: View {
                 if let assets = session.getLocalAssets(), !assets.isEmpty {
                     LazyVStack {
                         ForEach(assets) { asset in
-                            CryptoCellView(asset: asset)
-                                .padding(.top)
+                            NavigationLink(
+                                destination: CryptoDetailsView(asset: asset)
+                            ) {
+                                CryptoCellView(asset: asset)
+                                    .padding(.top)
+                            }
+                            .foregroundColor(.primary)
                         }
                     }
                     .padding()

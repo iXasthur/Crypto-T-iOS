@@ -13,25 +13,18 @@ struct CryptoCellView: View {
     let asset: CryptoAsset
     
     var body: some View {
-        VStack {
-            NavigationLink(
-                destination: CryptoDetailsView(asset: asset)
-            ) {
-                HStack {
-                    CryptoIconView(asset.iconFileData?.downloadURL, 50)
-                    VStack(alignment: .leading) {
-                        Text(asset.name)
-                        Text(asset.code)
-                            .foregroundColor(.secondary)
-                    }
-                    .padding(.leading, 5)
-                    Spacer()
-                    Image(systemName: "arrow.right")
-                        .imageScale(.small)
-                        .foregroundColor(.secondary)
-                }
+        HStack {
+            CryptoIconView(asset.iconFileData?.downloadURL, 50)
+            VStack(alignment: .leading) {
+                Text(asset.name)
+                Text(asset.code)
+                    .foregroundColor(.secondary)
             }
-            .foregroundColor(.primary)
+            .padding(.leading, 5)
+            Spacer()
+            Image(systemName: "arrow.right")
+                .imageScale(.small)
+                .foregroundColor(.secondary)
         }
         .padding()
         .overlay(
