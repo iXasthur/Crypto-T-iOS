@@ -126,7 +126,7 @@ struct CryptoUniversalCEView: View {
                         TextField("Code", text: $code)
                             .disableAutocorrection(true)
                             .autocapitalization(.allCharacters)
-                        MultilineTextField(placeholder: descriptionPlaceholderString, text: $description)
+                        TextField(descriptionPlaceholderString, text: $description)
                     }
                     
                     Section(
@@ -204,7 +204,7 @@ struct CryptoUniversalCEView: View {
                     }
                     
                     Section(
-                        header: Text("SUGGESTED EVENT")
+                        header: Text("EVENT")
                     ) {
                         Button {
                             activeSheet = .map
@@ -231,7 +231,7 @@ struct CryptoUniversalCEView: View {
                             }
                             .foregroundColor(.secondary)
                             
-                            MultilineTextField(placeholder: notePlaceholderString, text: $eventNote)
+                            TextField(notePlaceholderString, text: $eventNote)
                             
                             Button {
                                 withAnimation {

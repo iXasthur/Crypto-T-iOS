@@ -45,7 +45,7 @@ struct CryptoDetailsView: View {
                 let videoPlayer: AVPlayer = AVPlayer(url: url)
                 
                 Section(header:
-                            Text("SUGGESTED VIDEO")
+                            Text("VIDEO")
                 ) {
                     VideoPlayer(player: videoPlayer)
                         .aspectRatio(16.0/9.0, contentMode: .fit)
@@ -57,7 +57,7 @@ struct CryptoDetailsView: View {
             
             if let eventData = asset.suggestedEvent {
                 Section(header:
-                            Text("SUGGESTED EVENT")
+                            Text("EVENT")
                 ) {
                     Text(eventData.note)
                         .multilineTextAlignment(.leading)
