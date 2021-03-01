@@ -28,6 +28,26 @@ class Session: ObservableObject {
         })
     }
     
+    private func deleteLocalAsset(asset: CryptoAsset) {
+        if let index = getLocalAssets()?.firstIndex(where: { (a) -> Bool in
+            a.id == asset.id
+        }) {
+            dashboard?.assets.remove(at: index)
+        }
+    }
+    
+    func deleteRemoteAsset(asset: CryptoAsset, completion: @escaping (Error?) -> Void) {
+        cryptoAssetManager.deleteRemoteAsset(asset) { (error) in
+            if let error = error {
+                print(error)
+                completion(error)
+            } else {
+                self.deleteLocalAsset(asset: asset)
+                completion(nil)
+            }
+        }
+    }
+    
     private func updateLocalAsset(_ asset: CryptoAsset) {
         if let index = dashboard?.assets.firstIndex(where: { (a) -> Bool in
             a.id == asset.id

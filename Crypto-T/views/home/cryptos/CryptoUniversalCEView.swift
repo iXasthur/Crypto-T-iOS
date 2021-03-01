@@ -42,12 +42,14 @@ struct CryptoUniversalCEView: View {
     @State var videoNsUrl: NSURL?
     
     let assetToEdit: CryptoAsset?
+    let additionalOnDeleteAction: (() -> Void)?
     
     // Init as creator
     init(isPresented: Binding<Bool>) {
         self._isPresented = isPresented
         self.title = creatorTitle
         self.assetToEdit = nil
+        self.additionalOnDeleteAction = nil
         
         self._name = State(initialValue: "")
         self._code = State(initialValue: "")
@@ -57,10 +59,11 @@ struct CryptoUniversalCEView: View {
     }
     
     // Init as editor
-    init(assetToEdit: CryptoAsset, isPresented: Binding<Bool>) {
+    init(assetToEdit: CryptoAsset, onDelete: @escaping () -> Void, isPresented: Binding<Bool>) {
         self._isPresented = isPresented
         self.title = editorTitle
         self.assetToEdit = assetToEdit
+        self.additionalOnDeleteAction = onDelete
         
         self._name = State(initialValue: assetToEdit.name)
         self._code = State(initialValue: assetToEdit.code)
@@ -187,6 +190,35 @@ struct CryptoUniversalCEView: View {
                             }
                         }
                     }
+                    
+                    if let assetToEdit = assetToEdit {
+                        Section {
+                            Button {
+                                withAnimation {
+                                    progress = true
+                                }
+                                
+                                print("Deleting \(assetToEdit)")
+                                
+                                session.deleteRemoteAsset(asset: assetToEdit) { (error) in
+                                    progress = false
+                                    
+                                    if error == nil {
+                                        additionalOnDeleteAction?()
+                                        isPresented.toggle()
+                                    }
+                                }
+                            } label: {
+                                HStack {
+                                    Spacer()
+                                    Text("Delete")
+                                    Spacer()
+                                }
+                            }
+                            .foregroundColor(.red)
+                        }
+                    }
+                    
                 }
                 .navigationBarTitle(title, displayMode: .inline)
                 .sheet(item: $activeSheet) { item in

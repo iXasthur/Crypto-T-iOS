@@ -18,6 +18,32 @@ class CryptoAssetFirebaseManager {
     let encoder = JSONEncoder()
     let decoder = JSONDecoder()
     
+    func deleteRemoteAsset(_ asset: CryptoAsset, completion: @escaping (Error?) -> Void) {
+        if let iconFile = asset.iconFileData {
+            deleteFile(file: iconFile) { (error) in
+                if let error = error {
+                    print(error)
+                } else {
+                    print("Deleted file with path \(iconFile.path)")
+                }
+            }
+        }
+        
+        if let videoFile = asset.videoFileData {
+            deleteFile(file: videoFile) { (error) in
+                if let error = error {
+                    print(error)
+                } else {
+                    print("Deleted file with path \(videoFile.path)")
+                }
+            }
+        }
+        
+        let document = db.collection(Constants.assetsCollectionFirebaseName).document(asset.id)
+        document.delete { (error) in
+            completion(error)
+        }
+    }
     
     private func getStorageDownloadURL(path: String, completion: @escaping (URL?, Error?) -> Void) {
         let storageRef = storage.reference()
@@ -232,7 +258,6 @@ class CryptoAssetFirebaseManager {
         
     }
     
-    // TODO: DELETE OLD FILES SOMEWHERE
     func updateRemoteAsset(_ asset: CryptoAsset, _ iconNSURL: NSURL?, _ videoNSURL: NSURL?, completion: @escaping (CryptoAsset?, Error?) -> Void) {
         updateRemoteAssetRec(asset, iconNSURL, videoNSURL) { (updatedAssed, error) in
             completion(updatedAssed, error)
