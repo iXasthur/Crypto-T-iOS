@@ -9,11 +9,11 @@ import SwiftUI
 
 struct MapView: View {
     
-    @State var assistant: GoogleMapsAssistant = GoogleMapsAssistant()
+    let assistant: GoogleMapsAssistant = GoogleMapsAssistant()
     
     var body: some View {
         NavigationView {
-            GoogleMapsView(assistant: $assistant, showCryptoEventPins: true)
+            GoogleMapsView(assistant: assistant, showCryptoEventPins: true)
                 .edgesIgnoringSafeArea(.all)
                 .navigationBarTitle("Map", displayMode: .inline)
         }

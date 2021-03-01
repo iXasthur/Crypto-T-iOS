@@ -13,12 +13,12 @@ struct GoogleMapsView: UIViewRepresentable {
     
     @EnvironmentObject var session: Session
     
-    @Binding var assistant: GoogleMapsAssistant
+    let assistant: GoogleMapsAssistant
     
     let showCryptoEventPins: Bool
     
     func makeCoordinator() -> GoogleMapsViewCoordinator {
-        return GoogleMapsViewCoordinator(assistant: $assistant)
+        return GoogleMapsViewCoordinator(assistant: assistant)
     }
     
     func makeUIView(context: Self.Context) -> GMSMapView {
@@ -30,7 +30,6 @@ struct GoogleMapsView: UIViewRepresentable {
     }
     
     func updateUIView(_ mapView: GMSMapView, context: Context) {
-        assistant.position = mapView.camera.target
         if showCryptoEventPins {
             assistant.markers.forEach { (marker) in
                 marker.map = nil
@@ -55,10 +54,10 @@ struct GoogleMapsView: UIViewRepresentable {
 
 class GoogleMapsViewCoordinator: NSObject, GMSMapViewDelegate {
     
-    @Binding var assistant: GoogleMapsAssistant
+    let assistant: GoogleMapsAssistant
     
-    init(assistant: Binding<GoogleMapsAssistant>) {
-        self._assistant = assistant
+    init(assistant: GoogleMapsAssistant) {
+        self.assistant = assistant
     }
     
     func mapView(_ mapView: GMSMapView, didChange position: GMSCameraPosition) {

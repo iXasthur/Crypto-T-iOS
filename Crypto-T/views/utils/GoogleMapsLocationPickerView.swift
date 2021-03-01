@@ -15,12 +15,12 @@ struct GoogleMapsLocationPickerView: View {
     @Binding var latitude: Double?
     @Binding var longitude: Double?
     
-    @State var assistant: GoogleMapsAssistant = GoogleMapsAssistant()
+    let assistant: GoogleMapsAssistant = GoogleMapsAssistant()
     
     var body: some View {
         NavigationView {
             ZStack {
-                GoogleMapsView(assistant: $assistant, showCryptoEventPins: false)
+                GoogleMapsView(assistant: assistant, showCryptoEventPins: false)
                     .edgesIgnoringSafeArea(.all)
                     .navigationBarTitle("Pick Location", displayMode: .inline)
                     .toolbar {
