@@ -8,9 +8,13 @@
 import SwiftUI
 
 struct MapView: View {
+    
+    @State var assistant: GoogleMapsAssistant = GoogleMapsAssistant()
+    
     var body: some View {
         NavigationView {
-            Text("Map is unavailable")
+            GoogleMapsView(assistant: $assistant)
+                .edgesIgnoringSafeArea(.all)
                 .navigationBarTitle("Map", displayMode: .inline)
         }
     }

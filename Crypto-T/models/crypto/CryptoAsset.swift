@@ -16,4 +16,6 @@ struct CryptoAsset: Codable, Identifiable {
     
     var iconFileData: CloudFileData?
     var videoFileData: CloudFileData?
+    
+    var suggestedEvent: CryptoEvent?
 }

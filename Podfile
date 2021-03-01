@@ -16,5 +16,4 @@ target 'Crypto-T' do
   pod 'URLImage'
 
   pod 'GoogleMaps'
-  pod 'GooglePlaces'
 end

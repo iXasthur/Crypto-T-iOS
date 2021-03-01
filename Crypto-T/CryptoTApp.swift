@@ -7,6 +7,7 @@
 
 import SwiftUI
 import Firebase
+import GoogleMaps
 
 @main
 struct CryptoTApp: App {
@@ -28,6 +29,15 @@ struct CryptoTApp: App {
     class AppDelegate: NSObject, UIApplicationDelegate {
         func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey : Any]? = nil) -> Bool {
             UIScrollView.appearance().keyboardDismissMode = .onDrag
+            
+            if let path = Bundle.main.path(forResource: "GoogleService-Info", ofType: "plist"),
+               let nsDictionary = NSDictionary(contentsOfFile: path),
+               let API_KEY = nsDictionary["API_KEY"] as? String {
+                GMSServices.provideAPIKey(API_KEY)
+            } else {
+                fatalError()
+            }
+            
             FirebaseApp.configure()
             return true
         }

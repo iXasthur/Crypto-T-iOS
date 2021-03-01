@@ -40,8 +40,8 @@ struct CryptoDetailsView: View {
                     .multilineTextAlignment(.leading)
             }
             
-            if  let urlString = asset.videoFileData?.downloadURL,
-                let url = URL(string: urlString) {
+            if let urlString = asset.videoFileData?.downloadURL,
+               let url = URL(string: urlString) {
                 let videoPlayer: AVPlayer = AVPlayer(url: url)
                 
                 Section(header:
@@ -52,6 +52,28 @@ struct CryptoDetailsView: View {
                         .onDisappear(perform: {
                             videoPlayer.pause()
                         })
+                }
+            }
+            
+            if let eventData = asset.suggestedEvent {
+                Section(header:
+                            Text("SUGGESTED EVENT")
+                ) {
+                    Text(eventData.note)
+                        .multilineTextAlignment(.leading)
+                    HStack {
+                        Text("Latitude")
+                        Spacer()
+                        Text(String(eventData.latitude))
+                    }
+                    .foregroundColor(.secondary)
+                    
+                    HStack {
+                        Text("Longitude")
+                        Spacer()
+                        Text(String(eventData.longitude))
+                    }
+                    .foregroundColor(.secondary)
                 }
             }
             

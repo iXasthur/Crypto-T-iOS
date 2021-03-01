@@ -16,10 +16,12 @@
 		D03068CD25E54B8F001E2707 /* MainTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D03068CC25E54B8F001E2707 /* MainTabView.swift */; };
 		D03068D325E554AD001E2707 /* CryptoDashboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = D03068D225E554AD001E2707 /* CryptoDashboard.swift */; };
 		D03068D625E55D8A001E2707 /* CryptoAsset.swift in Sources */ = {isa = PBXBuildFile; fileRef = D03068D525E55D8A001E2707 /* CryptoAsset.swift */; };
+		D030BE0725ED572100B800F2 /* MultilineTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = D030BE0625ED572100B800F2 /* MultilineTextField.swift */; };
 		D0369B1C25E6BB1D00DAAFA3 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0369B1B25E6BB1D00DAAFA3 /* Constants.swift */; };
 		D03CA19625E9897A00A0D1F1 /* CryptoAssetFirebaseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D03CA19525E9897A00A0D1F1 /* CryptoAssetFirebaseManager.swift */; };
 		D03CA19925E98B7700A0D1F1 /* NSErrorExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D03CA19825E98B7700A0D1F1 /* NSErrorExtension.swift */; };
 		D03CA19F25E994A200A0D1F1 /* ImagePickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D03CA19E25E994A200A0D1F1 /* ImagePickerView.swift */; };
+		D058AAE925ED3CAA00D230C0 /* GoogleMapsAssistant.swift in Sources */ = {isa = PBXBuildFile; fileRef = D058AAE825ED3CAA00D230C0 /* GoogleMapsAssistant.swift */; };
 		D0792C5325E5234A00E5102C /* CryptoTApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0792C5225E5234A00E5102C /* CryptoTApp.swift */; };
 		D0792C5525E5234A00E5102C /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0792C5425E5234A00E5102C /* ContentView.swift */; };
 		D0792C5725E5234B00E5102C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D0792C5625E5234B00E5102C /* Assets.xcassets */; };
@@ -27,6 +29,9 @@
 		D0A05A1925E5756F003FCB66 /* AuthData.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0A05A1825E5756F003FCB66 /* AuthData.swift */; };
 		D0A05A2625E57732003FCB66 /* AuthView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0A05A2525E57732003FCB66 /* AuthView.swift */; };
 		D0A05A2B25E57771003FCB66 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0A05A2A25E57771003FCB66 /* HomeView.swift */; };
+		D0A7B06D25ED331D0026F1AF /* GoogleMapsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0A7B06C25ED331D0026F1AF /* GoogleMapsView.swift */; };
+		D0C6F69725ED40D9003FE881 /* CryptoEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0C6F69625ED40D9003FE881 /* CryptoEvent.swift */; };
+		D0C6F69B25ED45D2003FE881 /* GoogleMapsLocationPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0C6F69A25ED45D2003FE881 /* GoogleMapsLocationPickerView.swift */; };
 		D0C8AC9625EC13CB00EF0F9A /* CryptoImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0C8AC9525EC13CB00EF0F9A /* CryptoImageView.swift */; };
 		D0D9105225EBD6CF00629D54 /* AVURLAssetExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0D9105125EBD6CF00629D54 /* AVURLAssetExtensions.swift */; };
 		D0E24FC925E6A8A2000B5C8F /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = D0E24FC825E6A8A2000B5C8F /* GoogleService-Info.plist */; };
@@ -52,10 +57,12 @@
 		D03068CC25E54B8F001E2707 /* MainTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabView.swift; sourceTree = "<group>"; };
 		D03068D225E554AD001E2707 /* CryptoDashboard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CryptoDashboard.swift; sourceTree = "<group>"; };
 		D03068D525E55D8A001E2707 /* CryptoAsset.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CryptoAsset.swift; sourceTree = "<group>"; };
+		D030BE0625ED572100B800F2 /* MultilineTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MultilineTextField.swift; sourceTree = "<group>"; };
 		D0369B1B25E6BB1D00DAAFA3 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		D03CA19525E9897A00A0D1F1 /* CryptoAssetFirebaseManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CryptoAssetFirebaseManager.swift; sourceTree = "<group>"; };
 		D03CA19825E98B7700A0D1F1 /* NSErrorExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NSErrorExtension.swift; sourceTree = "<group>"; };
 		D03CA19E25E994A200A0D1F1 /* ImagePickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePickerView.swift; sourceTree = "<group>"; };
+		D058AAE825ED3CAA00D230C0 /* GoogleMapsAssistant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoogleMapsAssistant.swift; sourceTree = "<group>"; };
 		D0792C4F25E5234A00E5102C /* Crypto-T.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Crypto-T.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D0792C5225E5234A00E5102C /* CryptoTApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CryptoTApp.swift; sourceTree = "<group>"; };
 		D0792C5425E5234A00E5102C /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -65,6 +72,9 @@
 		D0A05A1825E5756F003FCB66 /* AuthData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthData.swift; sourceTree = "<group>"; };
 		D0A05A2525E57732003FCB66 /* AuthView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthView.swift; sourceTree = "<group>"; };
 		D0A05A2A25E57771003FCB66 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
+		D0A7B06C25ED331D0026F1AF /* GoogleMapsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoogleMapsView.swift; sourceTree = "<group>"; };
+		D0C6F69625ED40D9003FE881 /* CryptoEvent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CryptoEvent.swift; sourceTree = "<group>"; };
+		D0C6F69A25ED45D2003FE881 /* GoogleMapsLocationPickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoogleMapsLocationPickerView.swift; sourceTree = "<group>"; };
 		D0C8AC9525EC13CB00EF0F9A /* CryptoImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CryptoImageView.swift; sourceTree = "<group>"; };
 		D0D9105125EBD6CF00629D54 /* AVURLAssetExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AVURLAssetExtensions.swift; sourceTree = "<group>"; };
 		D0E24FC825E6A8A2000B5C8F /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
@@ -200,9 +210,12 @@
 		D0C8AC9825EC13D000EF0F9A /* utils */ = {
 			isa = PBXGroup;
 			children = (
-				D0C8AC9525EC13CB00EF0F9A /* CryptoImageView.swift */,
+				D0C6F69A25ED45D2003FE881 /* GoogleMapsLocationPickerView.swift */,
+				D0A7B06C25ED331D0026F1AF /* GoogleMapsView.swift */,
 				D03CA19E25E994A200A0D1F1 /* ImagePickerView.swift */,
 				D0E8A84B25EAF5910013B15E /* VideoPickerView.swift */,
+				D0C8AC9525EC13CB00EF0F9A /* CryptoImageView.swift */,
+				D030BE0625ED572100B800F2 /* MultilineTextField.swift */,
 			);
 			path = utils;
 			sourceTree = "<group>";
@@ -211,6 +224,7 @@
 			isa = PBXGroup;
 			children = (
 				D00793FE25EAEE39000811D6 /* CloudFileData.swift */,
+				D0C6F69625ED40D9003FE881 /* CryptoEvent.swift */,
 				D03068D525E55D8A001E2707 /* CryptoAsset.swift */,
 				D03068D225E554AD001E2707 /* CryptoDashboard.swift */,
 			);
@@ -236,6 +250,7 @@
 		D0E24FD025E6ACA1000B5C8F /* utils */ = {
 			isa = PBXGroup;
 			children = (
+				D058AAE825ED3CAA00D230C0 /* GoogleMapsAssistant.swift */,
 				D03CA19825E98B7700A0D1F1 /* NSErrorExtension.swift */,
 				D013C84C25EAC648003ED852 /* UIImageExtensions.swift */,
 				D0D9105125EBD6CF00629D54 /* AVURLAssetExtensions.swift */,
@@ -410,20 +425,25 @@
 				D0FF2A3B25E6F920004043CF /* AuthDataStorage.swift in Sources */,
 				D0792C5525E5234A00E5102C /* ContentView.swift in Sources */,
 				D03CA19925E98B7700A0D1F1 /* NSErrorExtension.swift in Sources */,
+				D0C6F69725ED40D9003FE881 /* CryptoEvent.swift in Sources */,
 				D03CA19625E9897A00A0D1F1 /* CryptoAssetFirebaseManager.swift in Sources */,
+				D058AAE925ED3CAA00D230C0 /* GoogleMapsAssistant.swift in Sources */,
 				D0792C5325E5234A00E5102C /* CryptoTApp.swift in Sources */,
 				D03CA19F25E994A200A0D1F1 /* ImagePickerView.swift in Sources */,
 				D013C84D25EAC648003ED852 /* UIImageExtensions.swift in Sources */,
 				D0369B1C25E6BB1D00DAAFA3 /* Constants.swift in Sources */,
+				D0A7B06D25ED331D0026F1AF /* GoogleMapsView.swift in Sources */,
 				D03068D625E55D8A001E2707 /* CryptoAsset.swift in Sources */,
 				D0F4CC7D25E6B87D00C77DFE /* AuthUniversalView.swift in Sources */,
 				D0ED7AC025E577FE0018C086 /* MapView.swift in Sources */,
 				D0A05A1925E5756F003FCB66 /* AuthData.swift in Sources */,
+				D030BE0725ED572100B800F2 /* MultilineTextField.swift in Sources */,
 				D0ED7AC325E578110018C086 /* SettingsView.swift in Sources */,
 				D0ED7AD925E57A340018C086 /* SettingsData.swift in Sources */,
 				D017124A25E9434E00AC1560 /* CryptosListView.swift in Sources */,
 				D0A05A2B25E57771003FCB66 /* HomeView.swift in Sources */,
 				D0ED7AC625E578850018C086 /* CryptoDetailsView.swift in Sources */,
+				D0C6F69B25ED45D2003FE881 /* GoogleMapsLocationPickerView.swift in Sources */,
 				D03068D325E554AD001E2707 /* CryptoDashboard.swift in Sources */,
 				D014E16725ED120400199C56 /* CryptoUniversalCEView.swift in Sources */,
 				D0A05A2625E57732003FCB66 /* AuthView.swift in Sources */,

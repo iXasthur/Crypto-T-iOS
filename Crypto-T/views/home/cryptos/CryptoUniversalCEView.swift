@@ -11,7 +11,7 @@ import AVKit
 
 
 enum CryptoUniversalCEViewSheet: Identifiable {
-    case image, video
+    case image, video, map
     
     var id: Int {
         hashValue
@@ -23,6 +23,7 @@ struct CryptoUniversalCEView: View {
     let creatorTitle = "New crypto"
     let editorTitle = "Edit crypto"
     let descriptionPlaceholderString = "Description"
+    let notePlaceholderString = "Note"
     
     let title: String
     
@@ -41,6 +42,10 @@ struct CryptoUniversalCEView: View {
     @State var iconNsUrl: NSURL?
     @State var videoNsUrl: NSURL?
     
+    @State var eventNote: String
+    @State var eventLatitude: Double?
+    @State var eventLongitude: Double?
+    
     let assetToEdit: CryptoAsset?
     let additionalOnDeleteAction: (() -> Void)?
     
@@ -56,6 +61,10 @@ struct CryptoUniversalCEView: View {
         self._description = State(initialValue: "")
         self._iconNsUrl = State(initialValue: nil)
         self._videoNsUrl = State(initialValue: nil)
+        
+        self._eventNote = State(initialValue: "")
+        self._eventLatitude = State(initialValue: nil)
+        self._eventLongitude = State(initialValue: nil)
     }
     
     // Init as editor
@@ -79,6 +88,16 @@ struct CryptoUniversalCEView: View {
             self._videoNsUrl = State(initialValue: NSURL(string: videoFileData.downloadURL))
         } else {
             self._videoNsUrl = State(initialValue: nil)
+        }
+        
+        if let eventData = assetToEdit.suggestedEvent {
+            self._eventNote = State(initialValue: eventData.note)
+            self._eventLatitude = State(initialValue: eventData.latitude)
+            self._eventLongitude = State(initialValue: eventData.longitude)
+        } else {
+            self._eventNote = State(initialValue: "")
+            self._eventLatitude = State(initialValue: nil)
+            self._eventLongitude = State(initialValue: nil)
         }
     }
     
@@ -107,14 +126,7 @@ struct CryptoUniversalCEView: View {
                         TextField("Code", text: $code)
                             .disableAutocorrection(true)
                             .autocapitalization(.allCharacters)
-                        ZStack(alignment: .topLeading) {
-                            if description.isEmpty {
-                                Text(descriptionPlaceholderString)
-                                    .foregroundColor(Color(UIColor.placeholderText))
-                                    .padding(.top, 8)
-                            }
-                            TextEditor(text: $description).padding(.leading, -4)
-                        }
+                        MultilineTextField(placeholder: descriptionPlaceholderString, text: $description)
                     }
                     
                     Section(
@@ -191,6 +203,52 @@ struct CryptoUniversalCEView: View {
                         }
                     }
                     
+                    Section(
+                        header: Text("SUGGESTED EVENT")
+                    ) {
+                        Button {
+                            activeSheet = .map
+                        } label: {
+                            HStack {
+                                Text("Pick location")
+                                Spacer()
+                            }
+                        }
+                        
+                        if let eventLatitude = eventLatitude,
+                           let eventLongitude = eventLongitude {
+                            HStack {
+                                Text("Latitude")
+                                Spacer()
+                                Text(String(eventLatitude))
+                            }
+                            .foregroundColor(.secondary)
+                            
+                            HStack {
+                                Text("Longitude")
+                                Spacer()
+                                Text(String(eventLongitude))
+                            }
+                            .foregroundColor(.secondary)
+                            
+                            MultilineTextField(placeholder: notePlaceholderString, text: $eventNote)
+                            
+                            Button {
+                                withAnimation {
+                                    self.eventNote = ""
+                                    self.eventLatitude = nil
+                                    self.eventLongitude = nil
+                                }
+                            } label: {
+                                HStack {
+                                    Text("Remove")
+                                    Spacer()
+                                }
+                                .foregroundColor(.red)
+                            }
+                        }
+                    }
+                    
                     if let assetToEdit = assetToEdit {
                         Section {
                             Button {
@@ -218,7 +276,6 @@ struct CryptoUniversalCEView: View {
                             .foregroundColor(.red)
                         }
                     }
-                    
                 }
                 .navigationBarTitle(title, displayMode: .inline)
                 .sheet(item: $activeSheet) { item in
@@ -227,6 +284,8 @@ struct CryptoUniversalCEView: View {
                         ImagePickerView(imageNSURL: $iconNsUrl)
                     case .video:
                         VideoPickerView(videoNSURL: $videoNsUrl)
+                    case .map:
+                        GoogleMapsLocationPickerView(latitude: $eventLatitude, longitude: $eventLongitude)
                     }
                 }
                 .toolbar {
@@ -241,20 +300,29 @@ struct CryptoUniversalCEView: View {
                             withAnimation {
                                 progress = true
                             }
-
+                            
                             DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+                                let event: CryptoEvent?
+                                if let eventLatitude = eventLatitude,
+                                   let eventLongitude = eventLongitude {
+                                    event = CryptoEvent(note: eventNote, latitude: eventLatitude, longitude: eventLongitude)
+                                } else {
+                                    event = nil
+                                }
+                                
                                 let asset = CryptoAsset(
                                     id: assetToEdit?.id ?? UUID().uuidString,
                                     name: name,
                                     code: code,
                                     description: description,
                                     iconFileData: assetToEdit?.iconFileData,
-                                    videoFileData: assetToEdit?.videoFileData
+                                    videoFileData: assetToEdit?.videoFileData,
+                                    suggestedEvent: event
                                 )
-
+                                
                                 session.updateRemoteAsset(asset: asset, iconNSURL: iconNsUrl, videoNSURL: videoNsUrl) { (error) in
                                     progress = false
-
+                                    
                                     if error == nil {
                                         isPresented.toggle()
                                     }
