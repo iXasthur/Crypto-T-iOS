@@ -13,6 +13,7 @@
 		D014E16725ED120400199C56 /* CryptoUniversalCEView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D014E16625ED120400199C56 /* CryptoUniversalCEView.swift */; };
 		D017124A25E9434E00AC1560 /* CryptosListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D017124925E9434E00AC1560 /* CryptosListView.swift */; };
 		D017124D25E9436300AC1560 /* CryptoCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D017124C25E9436300AC1560 /* CryptoCellView.swift */; };
+		D030653625ED895400F2499A /* UserLocale.swift in Sources */ = {isa = PBXBuildFile; fileRef = D030653525ED895400F2499A /* UserLocale.swift */; };
 		D03068CD25E54B8F001E2707 /* MainTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D03068CC25E54B8F001E2707 /* MainTabView.swift */; };
 		D03068D325E554AD001E2707 /* CryptoDashboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = D03068D225E554AD001E2707 /* CryptoDashboard.swift */; };
 		D03068D625E55D8A001E2707 /* CryptoAsset.swift in Sources */ = {isa = PBXBuildFile; fileRef = D03068D525E55D8A001E2707 /* CryptoAsset.swift */; };
@@ -54,6 +55,7 @@
 		D014E16625ED120400199C56 /* CryptoUniversalCEView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CryptoUniversalCEView.swift; sourceTree = "<group>"; };
 		D017124925E9434E00AC1560 /* CryptosListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CryptosListView.swift; sourceTree = "<group>"; };
 		D017124C25E9436300AC1560 /* CryptoCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CryptoCellView.swift; sourceTree = "<group>"; };
+		D030653525ED895400F2499A /* UserLocale.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserLocale.swift; sourceTree = "<group>"; };
 		D03068CC25E54B8F001E2707 /* MainTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabView.swift; sourceTree = "<group>"; };
 		D03068D225E554AD001E2707 /* CryptoDashboard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CryptoDashboard.swift; sourceTree = "<group>"; };
 		D03068D525E55D8A001E2707 /* CryptoAsset.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CryptoAsset.swift; sourceTree = "<group>"; };
@@ -242,6 +244,7 @@
 		D0E24FCF25E6AC8F000B5C8F /* settings */ = {
 			isa = PBXGroup;
 			children = (
+				D030653525ED895400F2499A /* UserLocale.swift */,
 				D0ED7AD825E57A340018C086 /* SettingsData.swift */,
 			);
 			path = settings;
@@ -434,6 +437,7 @@
 				D0369B1C25E6BB1D00DAAFA3 /* Constants.swift in Sources */,
 				D0A7B06D25ED331D0026F1AF /* GoogleMapsView.swift in Sources */,
 				D03068D625E55D8A001E2707 /* CryptoAsset.swift in Sources */,
+				D030653625ED895400F2499A /* UserLocale.swift in Sources */,
 				D0F4CC7D25E6B87D00C77DFE /* AuthUniversalView.swift in Sources */,
 				D0ED7AC025E577FE0018C086 /* MapView.swift in Sources */,
 				D0A05A1925E5756F003FCB66 /* AuthData.swift in Sources */,
