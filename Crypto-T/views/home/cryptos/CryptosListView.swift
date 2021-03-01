@@ -9,7 +9,7 @@ import SwiftUI
 
 struct CryptosListView: View {
     
-    let title = "Cryptos"
+    let title = "cryptos"
     
     @EnvironmentObject var session: Session
     
@@ -32,7 +32,7 @@ struct CryptosListView: View {
                     }
                     .padding()
                 } else {
-                    Text("There is no cryptos")
+                    Text("there_is_no_cryptos")
                         .multilineTextAlignment(.center)
                         .padding()
                         .navigationBarTitle(title)

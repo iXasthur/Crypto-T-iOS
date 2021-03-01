@@ -12,17 +12,17 @@ struct MainTabView: View {
         TabView {
             CryptosListView()
                 .tabItem {
-                    Label("Cryptos", systemImage: "cube")
+                    Label("cryptos", systemImage: "cube")
                 }
             
             MapView()
                 .tabItem {
-                    Label("Map", systemImage: "map")
+                    Label("map", systemImage: "map")
                 }
             
             SettingsView()
                 .tabItem {
-                    Label("Settings", systemImage: "gearshape")
+                    Label("settings", systemImage: "gearshape")
                 }
         }
     }

@@ -22,16 +22,16 @@ struct GoogleMapsLocationPickerView: View {
             ZStack {
                 GoogleMapsView(assistant: assistant, showCryptoEventPins: false)
                     .edgesIgnoringSafeArea(.all)
-                    .navigationBarTitle("Pick Location", displayMode: .inline)
+                    .navigationBarTitle("pick_location", displayMode: .inline)
                     .toolbar {
                         ToolbarItem(placement: .cancellationAction) {
-                            Button("Back") {
+                            Button("back") {
                                 presentationMode.wrappedValue.dismiss()
                             }
                         }
                         
                         ToolbarItem(placement: .confirmationAction) {
-                            Button("Select") {
+                            Button("select") {
                                 latitude = assistant.position?.latitude
                                 longitude = assistant.position?.longitude
                                 presentationMode.wrappedValue.dismiss()

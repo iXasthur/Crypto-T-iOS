@@ -20,10 +20,10 @@ enum CryptoUniversalCEViewSheet: Identifiable {
 
 struct CryptoUniversalCEView: View {
     
-    let creatorTitle = "New crypto"
-    let editorTitle = "Edit crypto"
-    let descriptionPlaceholderString = "Description"
-    let notePlaceholderString = "Note"
+    let creatorTitle = "new_crypto"
+    let editorTitle = "edit_crypto"
+    let descriptionPlaceholderString = "description"
+    let notePlaceholderString = "note"
     
     let title: String
     
@@ -118,25 +118,25 @@ struct CryptoUniversalCEView: View {
             ZStack {
                 Form {
                     Section(
-                        header: Text("GENERAL").padding(.top)
+                        header: Text("general").padding(.top)
                     ) {
-                        TextField("Name", text: $name)
+                        TextField("name", text: $name)
                             .disableAutocorrection(true)
                             .autocapitalization(.words)
-                        TextField("Code", text: $code)
+                        TextField("code", text: $code)
                             .disableAutocorrection(true)
                             .autocapitalization(.allCharacters)
                         TextField(descriptionPlaceholderString, text: $description)
                     }
                     
                     Section(
-                        header: Text("ICON")
+                        header: Text("icon")
                     ) {
                         Button {
                             activeSheet = .image
                         } label: {
                             HStack {
-                                Text("Select")
+                                Text("select")
                                 Spacer()
                                 
                                 if let iconURL = iconNsUrl?.absoluteURL {
@@ -160,7 +160,7 @@ struct CryptoUniversalCEView: View {
                                 }
                             } label: {
                                 HStack {
-                                    Text("Remove")
+                                    Text("remove")
                                     Spacer()
                                 }
                                 .foregroundColor(.red)
@@ -169,13 +169,13 @@ struct CryptoUniversalCEView: View {
                     }
                     
                     Section(
-                        header: Text("VIDEO")
+                        header: Text("video")
                     ) {
                         Button {
                             activeSheet = .video
                         } label: {
                             HStack {
-                                Text("Select")
+                                Text("select")
                                 Spacer()
                             }
                         }
@@ -195,7 +195,7 @@ struct CryptoUniversalCEView: View {
                                 }
                             } label: {
                                 HStack {
-                                    Text("Remove")
+                                    Text("remove")
                                     Spacer()
                                 }
                                 .foregroundColor(.red)
@@ -204,13 +204,13 @@ struct CryptoUniversalCEView: View {
                     }
                     
                     Section(
-                        header: Text("EVENT")
+                        header: Text("event")
                     ) {
                         Button {
                             activeSheet = .map
                         } label: {
                             HStack {
-                                Text("Pick location")
+                                Text("pick_location")
                                 Spacer()
                             }
                         }
@@ -218,14 +218,14 @@ struct CryptoUniversalCEView: View {
                         if let eventLatitude = eventLatitude,
                            let eventLongitude = eventLongitude {
                             HStack {
-                                Text("Latitude")
+                                Text("latitude")
                                 Spacer()
                                 Text(String(eventLatitude))
                             }
                             .foregroundColor(.secondary)
                             
                             HStack {
-                                Text("Longitude")
+                                Text("longitude")
                                 Spacer()
                                 Text(String(eventLongitude))
                             }
@@ -241,7 +241,7 @@ struct CryptoUniversalCEView: View {
                                 }
                             } label: {
                                 HStack {
-                                    Text("Remove")
+                                    Text("remove")
                                     Spacer()
                                 }
                                 .foregroundColor(.red)
@@ -269,7 +269,7 @@ struct CryptoUniversalCEView: View {
                             } label: {
                                 HStack {
                                     Spacer()
-                                    Text("Delete")
+                                    Text("delete")
                                     Spacer()
                                 }
                             }
@@ -290,13 +290,13 @@ struct CryptoUniversalCEView: View {
                 }
                 .toolbar {
                     ToolbarItem(placement: .cancellationAction) {
-                        Button("Back") {
+                        Button("back") {
                             isPresented.toggle()
                         }
                     }
                     
                     ToolbarItem(placement: .confirmationAction) {
-                        Button("Save") {
+                        Button("save") {
                             withAnimation {
                                 progress = true
                             }

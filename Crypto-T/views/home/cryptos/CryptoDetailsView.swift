@@ -27,14 +27,14 @@ struct CryptoDetailsView: View {
             }
             
             Section(header:
-                        Text("CODE")
+                        Text("code")
             ) {
                 Text(asset.code)
                     .multilineTextAlignment(.leading)
             }
             
             Section(header:
-                        Text("DESCRIPTION")
+                        Text("description")
             ) {
                 Text(asset.description)
                     .multilineTextAlignment(.leading)
@@ -45,7 +45,7 @@ struct CryptoDetailsView: View {
                 let videoPlayer: AVPlayer = AVPlayer(url: url)
                 
                 Section(header:
-                            Text("VIDEO")
+                            Text("video")
                 ) {
                     VideoPlayer(player: videoPlayer)
                         .aspectRatio(16.0/9.0, contentMode: .fit)
@@ -57,19 +57,19 @@ struct CryptoDetailsView: View {
             
             if let eventData = asset.suggestedEvent {
                 Section(header:
-                            Text("EVENT")
+                            Text("event")
                 ) {
                     Text(eventData.note)
                         .multilineTextAlignment(.leading)
                     HStack {
-                        Text("Latitude")
+                        Text("latitude")
                         Spacer()
                         Text(String(eventData.latitude))
                     }
                     .foregroundColor(.secondary)
                     
                     HStack {
-                        Text("Longitude")
+                        Text("longitude")
                         Spacer()
                         Text(String(eventData.longitude))
                     }

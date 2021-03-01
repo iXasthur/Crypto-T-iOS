@@ -15,7 +15,7 @@ struct MapView: View {
         NavigationView {
             GoogleMapsView(assistant: assistant, showCryptoEventPins: true)
                 .edgesIgnoringSafeArea(.all)
-                .navigationBarTitle("Map", displayMode: .inline)
+                .navigationBarTitle("map", displayMode: .inline)
         }
     }
 }

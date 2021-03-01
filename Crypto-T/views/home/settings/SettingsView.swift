@@ -16,7 +16,7 @@ struct SettingsView: View {
     var body: some View {
         NavigationView {
             Form {
-                Section(header: Text("Language")) {
+                Section(header: Text("language")) {
                     Picker("", selection: $selectedLanguage) {
                         ForEach(UserLocale.available) { loc in
                             Text(loc.rawValue)
@@ -28,17 +28,17 @@ struct SettingsView: View {
                         session.settings.setLocalization(l)
                     }
                 }
-                Section(header: Text("General")) {
+                Section(header: Text("general")) {
                     Section {
                         Button(action: {
                             session.destroy()
                         }) {
-                            Text("Log Out")
+                            Text("log_out")
                         }
                     }
                 }
             }
-            .navigationBarTitle("Settings", displayMode: .inline)
+            .navigationBarTitle("settings", displayMode: .inline)
         }
     }
 }

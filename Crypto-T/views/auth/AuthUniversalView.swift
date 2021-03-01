@@ -23,7 +23,7 @@ struct AuthUniversalView: View {
             GeometryReader { geometry in
                 ScrollView(showsIndicators: false) {
                     VStack {
-                        Text("Welcome!")
+                        Text("welcome_exclamation_mark")
                             .font(.largeTitle)
                             .fontWeight(.semibold)
                         
@@ -31,7 +31,7 @@ struct AuthUniversalView: View {
                             HStack {
                                 Image(systemName: "person")
                                     .foregroundColor(.secondary)
-                                TextField("Email", text: $email)
+                                TextField("email", text: $email)
                                     .foregroundColor(.primary)
                                     .disableAutocorrection(true)
                                     .autocapitalization(.none)
@@ -46,7 +46,7 @@ struct AuthUniversalView: View {
                             HStack {
                                 Image(systemName: "key")
                                     .foregroundColor(.secondary)
-                                SecureField("Password", text: $password)
+                                SecureField("password", text: $password)
                                     .foregroundColor(.primary)
                                     .disableAutocorrection(true)
                                     .autocapitalization(.none)
@@ -64,7 +64,7 @@ struct AuthUniversalView: View {
                             Button(action: {
                                 signUpTap()
                             }) {
-                                Text("Sign Up")
+                                Text("sign_up")
                                     .font(.headline)
                                     .foregroundColor(.white)
                                     .frame(maxWidth: .infinity, minHeight: 50)
@@ -75,7 +75,7 @@ struct AuthUniversalView: View {
                             Button(action: {
                                 signInTap()
                             }) {
-                                Text("Sign In")
+                                Text("sign_in")
                                     .font(.headline)
                                     .foregroundColor(.white)
                                     .frame(maxWidth: .infinity, minHeight: 50)
