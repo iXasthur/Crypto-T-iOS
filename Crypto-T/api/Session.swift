@@ -10,7 +10,7 @@ import Firebase
 
 class Session: ObservableObject {
     
-    @Published var settings: SettingsData = SettingsData.restore()
+    @Published var settings: SettingsData = SettingsData()
     @Published private var authData: AuthData? = nil
     @Published private var dashboard: CryptoDashboard? = nil
     

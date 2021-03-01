@@ -20,15 +20,12 @@ struct CryptoTApp: App {
         WindowGroup {
             ContentView()
                 .environmentObject(session)
-                .onAppear {
-                    
-                }
+                .environment(\.locale, Locale(identifier: session.settings.localization.languageCode))
         }
     }
     
     class AppDelegate: NSObject, UIApplicationDelegate {
         func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey : Any]? = nil) -> Bool {
-//            UIScrollView.appearance().keyboardDismissMode = .onDrag
             
             if let path = Bundle.main.path(forResource: "GoogleService-Info", ofType: "plist"),
                let nsDictionary = NSDictionary(contentsOfFile: path),

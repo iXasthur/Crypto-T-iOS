@@ -7,7 +7,6 @@
 
 import Foundation
 
-
 enum UserLocale: String, Identifiable, Codable {
     static let available: [UserLocale] = [.system, .en, .ru]
     
@@ -15,7 +14,22 @@ enum UserLocale: String, Identifiable, Codable {
         return self.rawValue
     }
     
-    case system = "System"
-    case en = "English"
-    case ru = "Russian"
+    var languageCode: String {
+        switch self {
+        case .system:
+            if let systemLanguageCode: String = Locale.current.languageCode {
+                return systemLanguageCode
+            } else {
+                return "en"
+            }
+        case .en:
+            return "en"
+        case .ru:
+            return "ru"
+        }
+    }
+    
+    case system = "sys_lang"
+    case en = "en_lang"
+    case ru = "ru_lang"
 }
