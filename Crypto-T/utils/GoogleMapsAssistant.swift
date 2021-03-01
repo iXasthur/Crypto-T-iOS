@@ -7,7 +7,7 @@
 
 import GoogleMaps
 
-struct GoogleMapsAssistant {
+class GoogleMapsAssistant {
     var markers: [GMSMarker] = []
     var position: CLLocationCoordinate2D? = nil
 }

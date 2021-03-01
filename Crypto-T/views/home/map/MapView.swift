@@ -13,7 +13,7 @@ struct MapView: View {
     
     var body: some View {
         NavigationView {
-            GoogleMapsView(assistant: $assistant)
+            GoogleMapsView(assistant: $assistant, showCryptoEventPins: true)
                 .edgesIgnoringSafeArea(.all)
                 .navigationBarTitle("Map", displayMode: .inline)
         }

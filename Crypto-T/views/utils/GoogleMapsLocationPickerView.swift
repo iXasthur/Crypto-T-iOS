@@ -20,7 +20,7 @@ struct GoogleMapsLocationPickerView: View {
     var body: some View {
         NavigationView {
             ZStack {
-                GoogleMapsView(assistant: $assistant)
+                GoogleMapsView(assistant: $assistant, showCryptoEventPins: false)
                     .edgesIgnoringSafeArea(.all)
                     .navigationBarTitle("Pick Location", displayMode: .inline)
                     .toolbar {

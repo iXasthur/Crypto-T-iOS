@@ -15,6 +15,8 @@ struct GoogleMapsView: UIViewRepresentable {
     
     @Binding var assistant: GoogleMapsAssistant
     
+    let showCryptoEventPins: Bool
+    
     func makeCoordinator() -> GoogleMapsViewCoordinator {
         return GoogleMapsViewCoordinator(assistant: $assistant)
     }
@@ -28,12 +30,26 @@ struct GoogleMapsView: UIViewRepresentable {
     }
     
     func updateUIView(_ mapView: GMSMapView, context: Context) {
-        // Update markers
-//        let marker = GMSMarker()
-//        marker.position = CLLocationCoordinate2D(latitude: mapView.camera.target.latitude, longitude: mapView.camera.target.latitude)
-//        marker.title = "Sydney"
-//        marker.snippet = "Australia"
-//        marker.map = mapView
+        assistant.position = mapView.camera.target
+        if showCryptoEventPins {
+            assistant.markers.forEach { (marker) in
+                marker.map = nil
+            }
+            
+            session.getLocalAssets()?.forEach({ (asset) in
+                if let event = asset.suggestedEvent {
+                    let marker = GMSMarker()
+                    marker.position = CLLocationCoordinate2D(
+                        latitude: event.latitude,
+                        longitude: event.longitude
+                    )
+                    marker.title = "\(asset.name) event"
+                    marker.snippet = event.note
+                    marker.map = mapView
+                    assistant.markers.append(marker)
+                }
+            })
+        }
     }
 }
 
