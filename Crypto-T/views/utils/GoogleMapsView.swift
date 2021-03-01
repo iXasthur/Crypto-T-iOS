@@ -42,7 +42,7 @@ struct GoogleMapsView: UIViewRepresentable {
                         latitude: event.latitude,
                         longitude: event.longitude
                     )
-                    marker.title = "\(asset.name) event"
+                    marker.title = "\(asset.name)"
                     marker.snippet = event.note
                     marker.map = mapView
                     assistant.markers.append(marker)
